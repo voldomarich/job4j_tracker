@@ -6,3 +6,4 @@ public class DummyDic {
             return word + eng;
         }
 }
+
