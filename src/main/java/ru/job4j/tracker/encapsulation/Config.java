@@ -1,7 +1,6 @@
 package ru.job4j.tracker.encapsulation;
 
 public class Config {
-
         private String name;
 
         private int position;
@@ -11,6 +10,7 @@ public class Config {
         public void print() {
             System.out.println(this.position);
             System.out.println(this.properties);
+            System.out.println(this.name);
         }
 
         public void Config(String name) {
