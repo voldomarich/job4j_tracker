@@ -5,7 +5,7 @@ public class Fact {
         System.out.println(new Fact().calc(-1));
     }
 
-    public int calc(int n) {
+    public static int calc(int n) {
         if (n < 0) {
             throw new IllegalArgumentException("Input should be number above zero.");
         }
