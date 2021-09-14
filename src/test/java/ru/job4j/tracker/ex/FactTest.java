@@ -13,7 +13,7 @@ public class FactTest {
     }
 
     @Test
-    public void when8() {
+    public void when7() {
         int rsl = Fact.calc(7);
         assertThat(rsl, is(5040));
     }
