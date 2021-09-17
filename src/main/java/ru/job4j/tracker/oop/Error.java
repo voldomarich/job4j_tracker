@@ -9,16 +9,16 @@ public class Error {
     public Error() {
     }
 
-    public void printInfo() {
-        System.out.println("Наличие ошибки: " + active);
-        System.out.println("Ошибка №" + status);
-        System.out.println("Наименование: " + message);
-    }
-
     public Error(boolean active, int status, String message) {
         this.active = active;
         this.status = status;
         this.message = message;
+    }
+
+    public void printInfo() {
+        System.out.println("Наличие ошибки: " + active);
+        System.out.println("Ошибка №" + status);
+        System.out.println("Наименование: " + message);
     }
 
     public static void main(String[] args) {
@@ -28,7 +28,7 @@ public class Error {
         error.printInfo();
         Error er = new Error(true, 408, "Request TimeOut");
         er.printInfo();
-        Error err = new Error(true, 510, "Not Extended ");
+        Error err = new Error(true, 510, "Not Extended");
         err.printInfo();
     }
     }
