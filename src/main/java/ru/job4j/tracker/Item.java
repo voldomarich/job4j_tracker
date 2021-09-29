@@ -15,19 +15,4 @@ public class Item {
         this.id = id;
         this.name = name;
     }
-
-    public void printInfo() {
-        System.out.println("Чип для материнской платы" + name);
-        System.out.println("ID" + id);
-        System.out.println();
-    }
-
-    public static void main(String[] args) {
-        Item first = new Item();
-        first.printInfo();
-        Item second = new Item("Чип для материнской платы");
-        second.printInfo();
-        Item third = new Item(20202021, "Чип для материнской платы");
-        third.printInfo();
-    }
 }
