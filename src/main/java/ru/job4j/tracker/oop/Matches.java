@@ -15,7 +15,7 @@ public class Matches {
             for (int i = 1; i < 4; i++) {
                     matches = 11 - i;
                 }
-                turn = !turn;
+            turn = !turn;
             }
             if (!turn) {
                 System.out.println("Выиграл первый игрок");
