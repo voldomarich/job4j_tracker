@@ -3,8 +3,8 @@ package ru.job4j.tracker.oop;
 public class Reduce {
     private int[] array;
 
-    public void to(int[] nums) {
-        array = nums;
+    public void to(final int[] array) {
+        this.array = array;
     }
 
     public void print() {
