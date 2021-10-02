@@ -1,20 +1,25 @@
 package ru.job4j.tracker.oop;
 
 public class Profession {
+
     private String name;
     private String surname;
     private String education;
     private String birthday;
 
-    public String getName();
+    public String getName() {
+        return name;
+    }
 
-    public String getSurname();
+    public String getSurname() {
+        return surname;
+    }
 
-    public String getEducation();
+    public String getEducation() {
+        return education;
+    }
 
-    public String getBirthday();
-
-    public static void main(String[] args) {
-        Pacient pacient = new Pacient();
+    public String getBirthday() {
+        return birthday;
     }
 }

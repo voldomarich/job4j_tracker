@@ -2,14 +2,34 @@ package ru.job4j.tracker.oop;
 
 public class Surgeon extends Doctor {
 
-    public Surgeon(String name, String surname, String education, String birthday) {
-        this.getName();
-        this.getSurname();
-        this.getEducation();
-        this.getBirthday();
+    private String category;
+    private String workPermit;
+
+    public String getCategory() {
+        return category;
     }
 
-    public Surgeon heal(Pacient pacient) {
+    public String getWorkPermit() {
+        return workPermit;
+    }
 
+    @Override
+    public String getName() {
+        return super.getName();
+    }
+
+    @Override
+    public String getSurname() {
+        return super.getSurname();
+    }
+
+    @Override
+    public String getEducation() {
+        return super.getEducation();
+    }
+
+    @Override
+    public String getBirthday() {
+        return super.getBirthday();
     }
 }

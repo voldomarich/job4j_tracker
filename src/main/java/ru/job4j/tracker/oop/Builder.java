@@ -1,16 +1,26 @@
 package ru.job4j.tracker.oop;
 
-public class Builder extends Profession {
+public class Builder extends Engineer {
 
-    public Builder(String name, String surname, String education, String birthday) {
-        this.getName();
-        this.getSurname();
-        this.getEducation();
-        this.getBirthday();
+    private String category;
+    private String workPermit;
+
+    public String getCategory() {
+        return category;
     }
 
-    public Builder build(House house) {
-
+    public String getWorkPermit() {
+        return workPermit;
     }
 
-}
+    private String speciality;
+    private String level;
+
+    public String getSpeciality() {
+        return speciality;
+    }
+
+    public String getLevel() {
+        return level;
+    }
+    }
