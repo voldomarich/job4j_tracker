@@ -32,4 +32,14 @@ public class Ophthalmologist extends Doctor {
     public String getBirthday() {
         return super.getBirthday();
     }
+
+    @Override
+    public String getSpeciality() {
+        return super.getSpeciality();
+    }
+
+    @Override
+    public String getLevel() {
+        return super.getLevel();
+    }
 }

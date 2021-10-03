@@ -13,14 +13,33 @@ public class Builder extends Engineer {
         return workPermit;
     }
 
-    private String speciality;
-    private String level;
+    @Override
+    public String getName() {
+        return super.getName();
+    }
 
+    @Override
+    public String getSurname() {
+        return super.getSurname();
+    }
+
+    @Override
+    public String getEducation() {
+        return super.getEducation();
+    }
+
+    @Override
+    public String getBirthday() {
+        return super.getBirthday();
+    }
+
+    @Override
     public String getSpeciality() {
-        return speciality;
+        return super.getSpeciality();
     }
 
+    @Override
     public String getLevel() {
-        return level;
+        return super.getLevel();
     }
-    }
+}
