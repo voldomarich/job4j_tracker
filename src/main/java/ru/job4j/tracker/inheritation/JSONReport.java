@@ -1,5 +1,6 @@
 package ru.job4j.tracker.inheritation;
 
+
 public class JSONReport extends TextReport {
 
     @Override

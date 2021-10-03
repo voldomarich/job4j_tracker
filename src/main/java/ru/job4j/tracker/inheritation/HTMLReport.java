@@ -7,5 +7,5 @@ public class HTMLReport extends TextReport {
         return "<h1>" + name + "</h1>" +
                 "<br/>" +
                 "<span>" + body + "</span>";
-    }
+   }
 }
