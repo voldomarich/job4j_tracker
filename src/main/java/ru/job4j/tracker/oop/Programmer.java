@@ -5,6 +5,14 @@ public class Programmer extends Engineer {
     private String category;
     private String workPermit;
 
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public void setWorkPermit(String workPermit) {
+        this.workPermit = workPermit;
+    }
+
     public String getCategory() {
         return category;
     }

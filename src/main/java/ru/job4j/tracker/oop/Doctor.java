@@ -4,6 +4,14 @@ public class Doctor extends Profession {
     private String speciality;
     private String level;
 
+    public void setSpeciality(String speciality) {
+        this.speciality = speciality;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
+    }
+
     public String getSpeciality() {
         return speciality;
     }

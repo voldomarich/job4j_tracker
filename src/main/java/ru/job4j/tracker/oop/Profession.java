@@ -6,6 +6,22 @@ public class Profession {
     private String education;
     private String birthday;
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public void setEducation(String education) {
+        this.education = education;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
+
     public String getName() {
         return name;
     }
