@@ -26,6 +26,6 @@ public class TriangleTest {
         Point c = new Point(10, 6);
         Triangle triangle = new Triangle(a, b, c);
         double rsl = triangle.area();
-        assertThat(rsl, closeTo(19.63, 0.033));
+        assertThat(rsl, closeTo(20.00, 0.001));
     }
     }
