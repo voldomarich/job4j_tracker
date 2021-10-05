@@ -1,14 +1,16 @@
 package ru.job4j.tracker.oop;
 
 public class Doctor extends Profession {
+
     private String speciality;
     private String level;
 
-    public void setSpeciality(String speciality) {
-        this.speciality = speciality;
+    public Doctor(String name, String surname, String education, String birthday) {
+        super(name, surname, education, birthday);
     }
 
-    public void setLevel(String level) {
+    public Doctor(String speciality, String level) {
+        this.speciality = speciality;
         this.level = level;
     }
 

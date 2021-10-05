@@ -5,11 +5,12 @@ public class Surgeon extends Doctor {
     private String category;
     private String workPermit;
 
-    public void setCategory(String category) {
-        this.category = category;
+    public Surgeon(String name, String surname, String education, String birthday) {
+        super(name, surname, education, birthday);
     }
 
-    public void setWorkPermit(String workPermit) {
+    public Surgeon(String category, String workPermit) {
+        this.category = category;
         this.workPermit = workPermit;
     }
 

@@ -1,24 +1,15 @@
 package ru.job4j.tracker.oop;
 
 public class Profession {
-    private String name;
-    private String surname;
-    private String education;
-    private String birthday;
+    private final String name;
+    private final String surname;
+    private final String education;
+    private final String birthday;
 
-    public void setName(String name) {
+    public Profession(String name, String surname, String education, String birthday) {
         this.name = name;
-    }
-
-    public void setSurname(String surname) {
         this.surname = surname;
-    }
-
-    public void setEducation(String education) {
         this.education = education;
-    }
-
-    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
 
