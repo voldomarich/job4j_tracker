@@ -3,23 +3,21 @@ package ru.job4j.tracker.oop;
 public class Programmer extends Engineer {
 
     private String category;
-    private String workPermit;
 
     public Programmer(String name, String surname, String education, String birthday) {
         super(name, surname, education, birthday);
     }
 
-    public void Programmer(String category, String workPermit) {
+    public Programmer(String level) {
+        super(level);
+    }
+
+    public void Programmer(String category) {
         this.category = category;
-        this.workPermit = workPermit;
     }
 
     public String getCategory() {
         return category;
-    }
-
-    public String getWorkPermit() {
-        return workPermit;
     }
 
     @Override
@@ -40,11 +38,6 @@ public class Programmer extends Engineer {
     @Override
     public String getBirthday() {
         return super.getBirthday();
-    }
-
-    @Override
-    public String getSpeciality() {
-        return super.getSpeciality();
     }
 
     @Override
