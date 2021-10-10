@@ -5,6 +5,7 @@ import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.is;
 
 public class BookShopTest {
+
         @Test
         public void whenLastNull() {
             Book[] products = new Book[5];
