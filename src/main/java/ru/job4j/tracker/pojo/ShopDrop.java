@@ -6,14 +6,7 @@ public class ShopDrop {
         for (int i = index; i < products.length - 1; i++) {
             products[i] = products[i + 1];
         }
-            products[products.length - 1] = null;
-        for (Product product : products) {
-            if (product != null) {
-               System.out.println(product.getName());
-            } else {
-               System.out.println("null");
-            }
-        }
+        products[products.length - 1] = null;
         return products;
-    }
+}
 }
