@@ -1,7 +1,6 @@
 package ru.job4j.tracker.pojo;
 
 public class Book {
-
     private String name;
     private int count;
 
