@@ -56,3 +56,4 @@ public class TrackerTest {
             assertThat(result[1].getName(), is(second.getName()));
         }
     }
+
