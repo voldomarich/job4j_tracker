@@ -9,6 +9,7 @@ public class College {
             student.setCreated(new Date());
             student.setGroup("103A");
 
-            System.out.println(student.getName() + " has been studying since " + student.getCreated() + " in the group №" + student.getGroup());
+            System.out.println(student.getName() + " has been studying since "
+                    + student.getCreated() + " in the group №" + student.getGroup());
         }
 }
