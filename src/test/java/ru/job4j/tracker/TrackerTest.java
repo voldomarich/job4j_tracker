@@ -7,6 +7,7 @@ import static org.junit.Assert.assertThat;
 import static org.hamcrest.core.IsNull.nullValue;
 
 public class TrackerTest {
+
         @Test
         public void whenTestFindById() {
             Tracker tracker = new Tracker();
