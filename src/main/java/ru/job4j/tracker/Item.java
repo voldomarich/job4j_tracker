@@ -4,19 +4,12 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Item {
+
+    private static final DateTimeFormatter FORMATTER =
+            DateTimeFormatter.ofPattern("dd-MMMM-EEEE-yyyy HH:mm:ss");
     private int id;
     private String name;
     private LocalDateTime created = LocalDateTime.now();
-    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MMMM-EEEE-yyyy HH:mm:ss");
-
-    @Override
-    public String toString() {
-        return "Item{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", created=" + created.format(FORMATTER) +
-                '}';
-    }
 
     public Item() {
     }
@@ -54,5 +47,17 @@ public class Item {
         this.created = created;
     }
 
+    @Override
+    public String toString() {
+        return
+                "Item{"
+                        +
+                "id=" + id
+                        +
+                ", name='" + name + '\''
+                        +
+                ", created=" + created.format(FORMATTER)
+                        +
+                '}';
+    }
 }
-
