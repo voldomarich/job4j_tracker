@@ -17,7 +17,17 @@ public class StartUI {
                 Item item = new Item(name);
                 tracker.add(item);
                 System.out.println("Добавленная заявка: " + item);
-            } else if (select >= 0 && select < 6) {
+            } else if (select == 1) {
+                System.out.println("=== Show all items ===");
+                Item[] items = tracker.findAll();
+                if (items.length > 0) {
+                    for (Item item : items) {
+                        System.out.println("Список заявок: " + item);
+                    }
+                } else {
+                    System.out.println("Хранилище ещё не содержит заявок");
+                }
+            } else if (select > 0 && select < 6) {
                 run = false;
             }
         }
