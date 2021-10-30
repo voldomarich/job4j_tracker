@@ -29,9 +29,9 @@ public class StartUI {
                 }
             } else if (select == 2) {
                 System.out.println("=== Edit item ===");
-                System.out.println("Enter ID: ");
+                System.out.print("Enter ID: ");
                 int id = Integer.parseInt(scanner.nextLine());
-                System.out.println("Enter name: ");
+                System.out.print("Enter name: ");
                 String name = scanner.nextLine();
                 System.out.println(name);
                 Item item = new Item(name);
