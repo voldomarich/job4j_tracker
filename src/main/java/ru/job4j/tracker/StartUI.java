@@ -33,12 +33,21 @@ public class StartUI {
                 int id = Integer.parseInt(scanner.nextLine());
                 System.out.print("Enter name: ");
                 String name = scanner.nextLine();
-                System.out.println(name);
                 Item item = new Item(name);
                 if (tracker.replace(id, item)) {
-                    System.out.println("Заявка изменена успешно.");
+                    System.out.println("Заявка изменена успешно. " + tracker.findById(id));
                 } else {
                     System.out.println("Ошибка замены заявки.");
+                }
+            } else if (select == 3) {
+                System.out.println("=== Delete item ===");
+                System.out.print("Enter ID: ");
+                int id = Integer.parseInt(scanner.nextLine());
+                Item item = tracker.findById(id);
+                if (tracker.delete(id)) {
+                    System.out.println("Заявка удалена успешно. " + item);
+                    } else {
+                    System.out.println("Что-то пошло не так, и заявка не удалилась.");
                 }
             } else if (select < 0 || select > 6) {
                 run = false;
