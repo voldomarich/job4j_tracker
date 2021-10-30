@@ -75,6 +75,7 @@ public class StartUI {
                 run = false;
             }
         }
+    }
 
         private void showMenu() {
             String[] menu = {
@@ -94,9 +95,3 @@ public class StartUI {
             new StartUI().init(scanner, tracker);
         }
     }
-}
-
-
-
-
-
