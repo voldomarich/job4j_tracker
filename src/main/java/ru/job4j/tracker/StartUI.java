@@ -35,7 +35,7 @@ public class StartUI {
                 String name = scanner.nextLine();
                 Item item = new Item(name);
                 if (tracker.replace(id, item)) {
-                    System.out.println("Заявка изменена успешно. " + tracker.findById(id));
+                    System.out.println("Заявка изменена успешно. " + id);
                 } else {
                     System.out.println("Ошибка замены заявки.");
                 }
@@ -43,9 +43,8 @@ public class StartUI {
                 System.out.println("=== Delete item ===");
                 System.out.print("Enter ID: ");
                 int id = Integer.parseInt(scanner.nextLine());
-                Item item = tracker.findById(id);
                 if (tracker.delete(id)) {
-                    System.out.println("Заявка удалена успешно. " + item);
+                    System.out.println("Заявка удалена успешно. " + id);
                 } else {
                     System.out.println("Что-то пошло не так, и заявка не удалилась.");
                 }
@@ -54,8 +53,8 @@ public class StartUI {
                 System.out.print("Enter ID: ");
                 int id = Integer.parseInt(scanner.nextLine());
                 Item item = tracker.findById(id);
-                if (tracker.findById(id) != null) {
-                    System.out.println("Заявка найдена успешно. " + item);
+                if (item != null) {
+                    System.out.println(item);
                 } else {
                     System.out.println("Заявка с введенным id: " + id + " не найдена.");
                 }
@@ -66,7 +65,7 @@ public class StartUI {
                 Item[] items = tracker.findByName(name);
                 if (items.length > 0) {
                     for (Item item : items) {
-                        System.out.println("Заявка найдена успешно. " + item);
+                        System.out.println(item);
                     }
                 } else {
                     System.out.println("Заявка с введенным именем " + name + " не найдена.");
