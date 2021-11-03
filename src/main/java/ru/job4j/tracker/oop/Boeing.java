@@ -2,7 +2,7 @@ package ru.job4j.tracker.oop;
 
 public class Boeing implements Vehicle {
     public void fly() {
-        System.out.println(nameClass + "летит");
+        System.out.println(getClass().getSimpleName() + "летит");
     }
 
     @Override
