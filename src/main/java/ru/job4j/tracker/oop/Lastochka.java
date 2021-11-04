@@ -1,6 +1,7 @@
 package ru.job4j.tracker.oop;
 
 public class Lastochka implements Vehicle {
+
     public void rail() {
         System.out.println(getClass().getSimpleName() + "едет по рельсам");
     }

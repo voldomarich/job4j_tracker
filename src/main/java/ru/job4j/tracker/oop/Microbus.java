@@ -1,6 +1,7 @@
 package ru.job4j.tracker.oop;
 
 public class Microbus implements Vehicle {
+
     public void ride() {
         System.out.println(getClass().getSimpleName() + "едет по автодороге");
     }
