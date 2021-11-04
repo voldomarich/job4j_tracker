@@ -1,4 +1,4 @@
-package ru.job4j.tracker.pojo;
+package ru.job4j.tracker.oop;
 
 public class Bus implements Transport {
     @Override
