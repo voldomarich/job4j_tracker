@@ -2,6 +2,12 @@ package ru.job4j.tracker.tracker;
 
 public class EditAction implements UserAction {
 
+    private final Output out;
+
+    public EditAction(Output out) {
+        this.out = out;
+    }
+
     @Override
     public String name() {
         return "Edit item";
