@@ -3,7 +3,6 @@ package ru.job4j.tracker.tracker;
 import ru.job4j.tracker.oop.ConsoleInput;
 
 public class StartUI {
-
     public void init(Input input, Tracker tracker, UserAction[] actions) {
         boolean run = true;
         while (run) {
