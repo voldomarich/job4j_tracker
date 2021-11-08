@@ -18,10 +18,10 @@ public class FindAllAction implements UserAction {
         Item[] items = tracker.findAll();
         if (items.length > 0) {
             for (Item item : items) {
-                System.out.println("Список заявок: " + item);
+                out.println("Список заявок: " + item);
             }
         } else {
-            System.out.println("Хранилище ещё не содержит заявок");
+            out.println("Хранилище ещё не содержит заявок");
         }
         return true;
     }

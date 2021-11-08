@@ -64,7 +64,7 @@ public class StartUITest {
                         + "0. Edit item" + ln
                         + "1. Exit Program" + ln
                         + "=== Edit item ===" + ln
-                        + "Заявка изменена успешно." + ln
+                        + "Заявка изменена успешно. " + one.getId() + ln
                         + "Menu:" + ln
                         + "0. Edit item" + ln
                         + "1. Exit Program" + ln
@@ -90,7 +90,7 @@ public class StartUITest {
                 "Menu:" + ln
                         + "0. Show all items" + ln
                         + "1. Exit Program" + ln
-                        + "Хранилище ещё не содержит заявок" + ln
+                        + "Список заявок: " + one + ln
                         + "Menu:" + ln
                         + "0. Show all items" + ln
                         + "1. Exit Program" + ln
@@ -116,7 +116,7 @@ public class StartUITest {
                 "Menu:" + ln
                         + "0. Find item by ID" + ln
                         + "1. Exit Program" + ln
-                        + "Заявка с введенным id: " + one.getId() + " не найдена." + ln
+                        + one + ln
                         + "Menu:" + ln
                         + "0. Find item by ID" + ln
                         + "1. Exit Program" + ln
@@ -140,11 +140,11 @@ public class StartUITest {
         String ln = System.lineSeparator();
         assertThat(out.toString(), is(
                 "Menu:" + ln
-                        + "0. Find item by ID" + ln
+                        + "0. Find item by name" + ln
                         + "1. Exit Program" + ln
-                        + "Заявок с введенным именем" + one.getName() + " не найдено." + ln
+                        + one + ln
                         + "Menu:" + ln
-                        + "0. Find item by ID" + ln
+                        + "0. Find item by name" + ln
                         + "1. Exit Program" + ln
                         + "=== Exit Program ===" + ln
         ));

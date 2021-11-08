@@ -10,7 +10,7 @@ public class FindByNameAction implements UserAction {
 
     @Override
     public String name() {
-        return "Find items by name";
+        return "Find item by name";
     }
 
     @Override
@@ -19,10 +19,10 @@ public class FindByNameAction implements UserAction {
         Item[] items = tracker.findByName(name);
         if (items.length > 0) {
             for (Item item : items) {
-                System.out.println(item);
+                out.println(item);
             }
         } else {
-            System.out.println("Заявок с введенным именем " + name + " не найдено.");
+            out.println("Заявок с введенным именем " + name + " не найдено.");
         }
         return true;
     }

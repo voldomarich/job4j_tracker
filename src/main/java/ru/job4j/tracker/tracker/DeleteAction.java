@@ -17,9 +17,9 @@ public class DeleteAction implements UserAction {
     public boolean execute(Input input, Tracker tracker) {
         int id = input.askInt("Enter ID: ");
         if (tracker.delete(id)) {
-            System.out.println("Заявка удалена успешно. " + id);
+            out.println("Заявка удалена успешно. " + id);
         } else {
-            System.out.println("Что-то пошло не так, и заявка не удалилась.");
+            out.println("Что-то пошло не так, и заявка не удалилась.");
         }
         return true;
     }
