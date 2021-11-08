@@ -3,7 +3,6 @@ package ru.job4j.tracker.tracker;
 import ru.job4j.tracker.oop.ConsoleInput;
 
 public class StartUI {
-
     private final Output out;
 
     public StartUI(Output out) {
