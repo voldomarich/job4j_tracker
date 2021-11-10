@@ -11,15 +11,14 @@ public class UserStore {
             throw new UserNotFoundException("User is not found");
     }
 
-
         public static boolean validate(User user) throws UserInvalidException {
-            if (!user.isValid() || user.length < 3) {
+            if (!user.isValid() || user.getLength() < 3) {
                 throw new UserInvalidException("User is not validated");
             }
             return true;
         }
 
-        public static void main (String[] args){
+        public static void main(String[] args) {
             User[] users = {
                     new User("Petr Arsentev", true)
             };

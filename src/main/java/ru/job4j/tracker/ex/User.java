@@ -2,9 +2,9 @@ package ru.job4j.tracker.ex;
 
 public class User {
 
-    public int length;
-    private String username;
-    private boolean valid;
+    private int length;
+    private final String username;
+    private final boolean valid;
 
     public User(String username, boolean valid) {
         this.username = username;
@@ -17,5 +17,9 @@ public class User {
 
     public boolean isValid() {
         return valid;
+    }
+
+    public int getLength() {
+        return length;
     }
 }
