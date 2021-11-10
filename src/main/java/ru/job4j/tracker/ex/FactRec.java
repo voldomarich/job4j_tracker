@@ -1,7 +1,7 @@
 package ru.job4j.tracker.ex;
 
 public class FactRec {
-    public static float calc(float n) {
+    public static int calc(int n) {
         if (n <= 1) {
             return 1;
         }
@@ -9,7 +9,7 @@ public class FactRec {
         }
 
     public static void main(String[] args) {
-        float rsl = calc(34);
+        int rsl = calc(11);
         System.out.println(rsl);
     }
 }
