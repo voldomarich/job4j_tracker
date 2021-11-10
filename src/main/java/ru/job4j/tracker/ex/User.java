@@ -10,15 +10,11 @@ public class User {
         this.valid = valid;
     }
 
-    public User() {
-
-    }
-
     public String getUsername() {
         return username;
     }
 
     public boolean isValid() {
-        return true;
+        return valid;
     }
 }
