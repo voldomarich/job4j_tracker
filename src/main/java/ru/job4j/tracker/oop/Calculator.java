@@ -1,7 +1,5 @@
 package ru.job4j.tracker.oop;
 
-import java.util.concurrent.Callable;
-
 public class Calculator {
 
     private static int x = 5;
@@ -22,16 +20,22 @@ public class Calculator {
         return d / x;
     }
 
-    public int sumAllOperation(int rsl) {
-        return a + b + c + d;
+    public int sumAllOperation(int i) {
+        int a = 0;
+        int b = 0;
+        int c = 0;
+        int d = 0;
+        i = sum(a) + minus(b) + multiply(c) + divide(d);
+        return i;
     }
 
     public static void main(String[] args) {
+        int i = 0;
         System.out.println(sum(10));
         System.out.println(minus(21));
         Calculator calculator = new Calculator();
         System.out.println(calculator.multiply(8));
-        System.out.println(calculator.divide(2));
-        System.out.println(calculator.sumAllOperation());
+        System.out.println(calculator.divide(10));
+        System.out.println(calculator.sumAllOperation(i));
     }
 }
