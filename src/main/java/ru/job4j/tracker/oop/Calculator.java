@@ -25,8 +25,7 @@ public class Calculator {
         int b = 0;
         int c = 0;
         int d = 0;
-        i = sum(a) + minus(b) + multiply(c) + divide(d);
-        return i;
+        return sum(a) + minus(b) + multiply(c) + divide(d);
     }
 
     public static void main(String[] args) {
