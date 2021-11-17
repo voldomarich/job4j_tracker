@@ -21,20 +21,15 @@ public class Calculator {
     }
 
     public int sumAllOperation(int i) {
-        int a = 0;
-        int b = 0;
-        int c = 0;
-        int d = 0;
-        return sum(a) + minus(b) + multiply(c) + divide(d);
+        return sum(i) + minus(i) + multiply(i) + divide(i);
     }
 
     public static void main(String[] args) {
-        int i = 0;
-        System.out.println(sum(10));
-        System.out.println(minus(21));
+        System.out.println(sum(100));
+        System.out.println(minus(100));
         Calculator calculator = new Calculator();
-        System.out.println(calculator.multiply(8));
-        System.out.println(calculator.divide(10));
-        System.out.println(calculator.sumAllOperation(i));
+        System.out.println(calculator.multiply(100));
+        System.out.println(calculator.divide(100));
+        System.out.println(calculator.sumAllOperation(100));
     }
 }
