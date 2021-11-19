@@ -2,7 +2,7 @@ package ru.job4j.tracker.ooa;
 
 public final class Airbus extends Airkraft {
 
-    private static int COUNT_ENGINE = 2;
+    private final static int COUNT_ENGINE = 2;
 
     private String name;
 
@@ -24,6 +24,7 @@ public final class Airbus extends Airkraft {
     }
 
     public void printCountEngine() {
+        int COUNT_ENGINE = 0;
         if (getName().equals("A380")) {
             COUNT_ENGINE = 4;
         }
