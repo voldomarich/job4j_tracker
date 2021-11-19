@@ -24,7 +24,7 @@ public final class Airbus extends Airkraft {
     }
 
     public void printCountEngine() {
-        int COUNT_ENGINE = 0;
+        int COUNT_ENGINE = 2;
         if (getName().equals("A380")) {
             COUNT_ENGINE = 4;
         }
