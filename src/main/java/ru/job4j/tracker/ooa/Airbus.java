@@ -24,10 +24,7 @@ public final class Airbus extends Airkraft {
     }
 
     public void printCountEngine() {
-        int count = 2;
-        if (getName().equals("A380")) {
-            count = 4;
-        }
+        int count = "A380".equals(getName()) ? 4 : COUNT_ENGINE;
         System.out.println("Количество двигателей равно: " + count);
     }
 
