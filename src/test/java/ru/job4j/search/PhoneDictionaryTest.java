@@ -19,6 +19,6 @@ public class PhoneDictionaryTest {
             persons = phones.find("534872");
             assertThat(persons.get(0).getAddress(), is("Bryansk"));
             persons = phones.find("Igor");
-            assertThat(persons.get(0).getPhone(), is(empty().toString()));
+            assertThat(persons.size(), is(0));
         }
     }
