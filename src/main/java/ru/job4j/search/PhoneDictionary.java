@@ -1,19 +1,23 @@
 package ru.job4j.search;
 
+import java.util.ArrayList;
+
 public class PhoneDictionary {
 
-    private ArrayList<Person> persons = new ArrayList<Person>();
+    private final ArrayList<Person> persons = new ArrayList<>();
 
     public void add(Person person) {
         this.persons.add(person);
     }
 
     public ArrayList<Person> find(String key) {
-        if  (key.contains() > 2 && key.contains().getName || key.contains().getSurname
-        || key.contains().persons.getPhone || key.contains().getAddress) {
-            return persons;
+        ArrayList<Person> rsl = new ArrayList<>();
+        for (Person person : persons) {
+        if  (key.contains(person.getName()) || key.contains(person.getSurname())
+        || key.contains(person.getPhone()) || key.contains(person.getAddress())) {
+            rsl.add(person);
         }
-        ArrayList<Person> result = new ArrayList<>();
-        return result;
+        }
+        return rsl;
     }
 }

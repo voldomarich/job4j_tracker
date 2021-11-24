@@ -1,8 +1,10 @@
 package ru.job4j.search;
 
 import org.junit.Test;
+import java.util.ArrayList;
 
-import static org.junit.Assert.*;
+import static org.hamcrest.Matchers.*;
+import static org.junit.Assert.assertThat;
 
 public class PhoneDictionaryTest {
 
@@ -14,6 +16,9 @@ public class PhoneDictionaryTest {
             );
             ArrayList<Person> persons = phones.find("Petr");
             assertThat(persons.get(0).getSurname(), is("Arsentev"));
+            persons = phones.find("534872");
+            assertThat(persons.get(0).getAddress(), is("Bryansk"));
+            persons = phones.find("Igor");
+            assertThat(persons.get(0).getPhone(), is(empty().toString()));
         }
     }
-}
