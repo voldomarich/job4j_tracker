@@ -10,6 +10,7 @@ import static org.junit.Assert.assertThat;
 
 @Ignore
 public class ConvertList2ArrayTest {
+
     @Test
     public void when7ElementsThen9() {
         int[][] result = ConvertList2Array.toArray(
