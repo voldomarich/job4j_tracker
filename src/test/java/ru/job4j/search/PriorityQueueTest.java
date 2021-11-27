@@ -3,6 +3,7 @@ package ru.job4j.search;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 
 public class PriorityQueueTest {
@@ -31,6 +32,6 @@ public class PriorityQueueTest {
     public void whenNoElements() {
         PriorityQueue queue = new PriorityQueue();
         Task result = queue.take();
-        assertThat(result.getDesc(), is(0));
+        assertNull(result);
     }
 }
