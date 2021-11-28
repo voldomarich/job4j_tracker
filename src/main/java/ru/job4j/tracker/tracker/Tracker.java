@@ -1,6 +1,5 @@
 package ru.job4j.tracker.tracker;
 
-import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +7,7 @@ import java.util.List;
 public class Tracker {
     private final List<Item> items = new ArrayList<>();
     private int ids = 1;
+    private int size = 0;
 
     public Item add(Item item) {
         item.setId(ids++);
@@ -70,8 +70,8 @@ public class Tracker {
         boolean rsl = index != -1;
         if (rsl) {
             System.arraycopy(items, index + 1, items, index, items.size() - index - 1);
-            items.get(items.size() - 1) = null;
-            items.size()--;
+            items.add((items.size() - 1), null);
+            size--;
         }
         return rsl;
     }
