@@ -38,7 +38,7 @@ public class StartUITest {
         Input in = new StubInput(
                 new String[]{"0", String.valueOf(item.getId()), "1"}
         );
-        List<UserAction> actions =List.of(
+        List<UserAction> actions = List.of(
                 new DeleteAction(out),
                 new ExitAction(out)
         );

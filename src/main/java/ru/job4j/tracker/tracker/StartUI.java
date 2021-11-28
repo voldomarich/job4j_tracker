@@ -3,7 +3,6 @@ package ru.job4j.tracker.tracker;
 import java.util.List;
 
 public class StartUI {
-
     private final Output out;
 
     public StartUI(Output out) {
