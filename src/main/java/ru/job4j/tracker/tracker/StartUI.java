@@ -17,7 +17,7 @@ public class StartUI {
                 out.println("Wrong input, you can select: 0 .. " + (actions.length - 1));
                 continue;
             }
-            UserAction action = actions[select];
+            UserAction action = actions.get(select);
             run = action.execute(input, tracker);
         }
     }
@@ -33,7 +33,7 @@ public class StartUI {
             Output output  = new ConsoleOutput();
             Input input = new ValidateInput(output, new ConsoleInput());
             Tracker tracker = new Tracker();
-            UserAction[] actions = {
+            UserAction[] actions.add{
                     new CreateAction(output), new FindAllAction(output), new EditAction(output),
                     new DeleteAction(output), new FindByIdAction(output),
                     new FindByNameAction(output), new ExitAction(output)

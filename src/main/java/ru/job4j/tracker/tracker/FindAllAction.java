@@ -1,5 +1,8 @@
 package ru.job4j.tracker.tracker;
 
+import java.awt.*;
+import java.util.ArrayList;
+
 public class FindAllAction implements UserAction {
     private final Output out;
 
@@ -14,8 +17,9 @@ public class FindAllAction implements UserAction {
 
     @Override
     public boolean execute(Input input, Tracker tracker) {
-        Item[] items = tracker.findAll();
-        if (items.length > 0) {
+        List<Item> items = new ArrayList<>();
+        items.add(tracker.findAll());
+        if (items.size() > 0) {
             for (Item item : items) {
                 out.println("Список заявок: " + item);
             }
