@@ -3,7 +3,6 @@ package ru.job4j.collection;
 import java.util.Objects;
 
 public class Account {
-
     private final String passport;
     private final String username;
     private final String deposit;
