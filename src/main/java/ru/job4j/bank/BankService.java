@@ -19,7 +19,7 @@ public class BankService {
         List<Account> list = new ArrayList<>();
         list.add(account);
         User user = findByPassport(passport);
-        users.put(user, list);
+        users.putIfAbsent(user, list);
     }
 
     public User findByPassport(String passport) {
@@ -36,8 +36,8 @@ public class BankService {
         User user = findByPassport(passport);
         if (user != null) {
             List<Account> list = users.get(user);
-            if (list.contains(requisite)) {
-                return account;
+            if (!list.contains(requisite)) {
+                return null;
             }
         }
         return account;
