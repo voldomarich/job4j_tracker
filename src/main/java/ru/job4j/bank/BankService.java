@@ -1,7 +1,5 @@
 package ru.job4j.bank;
 
-import ru.job4j.collection.Order;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,23 +9,25 @@ public class BankService {
     private final Map<User, List<Account>> users = new HashMap<>();
 
     public void addUser(User user) {
-        List<Account> list = new ArrayList<>();
-            users.putIfAbsent(user, list);
-        }
+        users.putIfAbsent(user, new ArrayList<>());
+    }
 
     public void addAccount(String passport, Account account) {
-        List<Account> list = new ArrayList<>();
-        list.add(account);
         User user = findByPassport(passport);
-        users.putIfAbsent(user, list);
+        if (user != null) {
+            List<Account> list = users.get(user);
+            if (!list.contains(account)) {
+                list.add(account);
+            }
+        }
     }
 
     public User findByPassport(String passport) {
         for (User user : users.keySet()) {
             if (passport.equals(user.getPassport())) {
-            return user;
+                return user;
+            }
         }
-    }
         return null;
     }
 
@@ -36,8 +36,10 @@ public class BankService {
         User user = findByPassport(passport);
         if (user != null) {
             List<Account> list = users.get(user);
-            if (!list.contains(requisite)) {
-                return null;
+            for (Account a : list) {
+                if (requisite.equals(a.getRequisite())) {
+                    account = a;
+                }
             }
         }
         return account;
@@ -48,7 +50,9 @@ public class BankService {
         boolean rsl = false;
         Account srcAccount = findByRequisite(srcPassport, srcRequisite);
         Account destAccount = findByRequisite(destPassport, destRequisite);
-        if (srcAccount.getBalance() >= amount) {
+        if (srcAccount != null && destAccount != null && srcAccount.getBalance() >= amount) {
+            srcAccount.setBalance(srcAccount.getBalance() - amount);
+            destAccount.setBalance(destAccount.getBalance() + amount);
             rsl = true;
         }
         return rsl;
