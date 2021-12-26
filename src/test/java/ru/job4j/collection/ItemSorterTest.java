@@ -11,7 +11,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
 public class ItemSorterTest {
-
     @Test
     public void main() {
         List<Item> items = Arrays.asList(
