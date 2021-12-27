@@ -8,6 +8,11 @@ public class User implements Comparable<User> {
     private String name;
     private int age;
 
+    public User(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
     public String getName() {
         return name;
     }
@@ -16,14 +21,11 @@ public class User implements Comparable<User> {
         return age;
     }
 
-    public User(String name, int age) {
-        this.name = name;
-        this.age = age;
-    }
-
     @Override
-    public int compareTo(User o) {
-        return Integer.compare(age, o.age);
+    public int compareTo(User first, User second) {
+        int a = first.getName().compareTo(second.getName());
+        int b = Integer.compare(second.getAge(), first.getAge());
+        return a.thenComparing(b);
     }
 
     @Override
@@ -42,17 +44,5 @@ public class User implements Comparable<User> {
     @Override
     public int hashCode() {
         return Objects.hash(name, age);
-    }
-
-    public static int ascByName(User user) {
-        return user.name.compareTo(user.getName());
-    }
-
-    public static int descByAge(User user) {
-        return Integer.compare(user.age, user.getAge());
-    }
-
-    public static int thenComparing() {
-        return Comparator.comparing(ascByName()).thenComparing(descByAge());
     }
 }
