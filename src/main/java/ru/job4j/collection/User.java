@@ -8,6 +8,7 @@ public class User implements Comparable<User> {
     private String name;
     private int age;
 
+
     public User(String name, int age) {
         this.name = name;
         this.age = age;
@@ -22,10 +23,13 @@ public class User implements Comparable<User> {
     }
 
     @Override
-    public int compareTo(User first, User second) {
-        int a = first.getName().compareTo(second.getName());
-        int b = Integer.compare(second.getAge(), first.getAge());
-        return a.thenComparing(b);
+    public int compareTo(User o) {
+        return this.name.compareTo(o.getName());
+    }
+
+    @Override
+    public int compare(User o, User o1) {
+        return Integer.compare(o.getAge(), o1.getAge());
     }
 
     @Override
