@@ -5,8 +5,16 @@ import java.util.Objects;
 
 public class User implements Comparable<User> {
 
-    private final String name;
-    private final int age;
+    private String name;
+    private int age;
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
 
     public User(String name, int age) {
         this.name = name;
@@ -14,8 +22,8 @@ public class User implements Comparable<User> {
     }
 
     @Override
-    public int compareTo(User o1, User o2) {
-        return o1.compareTo(o2);
+    public int compareTo(User o) {
+        return Integer.compare(age, o.age);
     }
 
     @Override
@@ -36,15 +44,15 @@ public class User implements Comparable<User> {
         return Objects.hash(name, age);
     }
 
-    public static Comparator<User> thenComparing() {
-        return ascByName().thenComparing(descByAge());
+    public static int ascByName(User user) {
+        return user.name.compareTo(user.getName());
     }
 
-    public static Comparator<User> ascByName(User first, User second) {
-        return first.getName().compareTo(second.getName());
+    public static int descByAge(User user) {
+        return Integer.compare(user.age, user.getAge());
     }
 
-    public static Comparator<User> descByAge(User first, User second) {
-        return Integer.compare(second.getAge(), first.getAge());
+    public static int thenComparing() {
+        return Comparator.comparing(ascByName()).thenComparing(descByAge());
     }
 }
