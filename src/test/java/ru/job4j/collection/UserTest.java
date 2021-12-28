@@ -7,7 +7,6 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeSet;
 
-import static org.junit.Assert.*;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.Matchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;

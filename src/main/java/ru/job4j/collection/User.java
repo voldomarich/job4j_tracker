@@ -7,7 +7,6 @@ public class User implements Comparable<User> {
     private final String name;
     private final int age;
 
-
     public User(String name, int age) {
         this.name = name;
         this.age = age;
@@ -45,3 +44,4 @@ public class User implements Comparable<User> {
         return Objects.hash(name, age);
     }
 }
+
