@@ -90,8 +90,7 @@ public class JobSorterTest {
     @Test
     public void yetAnotherComparatorByNameAndPriority() {
         Comparator<Job> cmpNamePriority = new JobDescByName()
-                .thenComparing(new JobsAscByPriority()
-                .thenComparing(new JobDescByPriority()));
+                .thenComparing(new JobsAscByPriority());
         int rsl = cmpNamePriority.compare(
                 new Job("Get bug fixed", 2),
                 new Job("Get bug fixed", 3)
@@ -107,10 +106,8 @@ public class JobSorterTest {
                 new Job("Fix bug", 2),
                 new Job("X task", 0)
         );
-        Comparator<Job> comb = new JobAscByName()
-                .thenComparing(new JobDescByName())
-                .thenComparing(new JobDescByPriority())
-                .thenComparing(new JobsAscByPriority());
+        Comparator<Job> comb = new JobDescByName()
+                .thenComparing(new JobDescByPriority());
         Collections.sort(list, comb);
         List<Job> expected = Arrays.asList(
                 new Job("X task", 0),
