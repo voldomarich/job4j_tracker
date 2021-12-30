@@ -40,4 +40,22 @@ public class LexSortTest {
         Arrays.sort(input, new LexSort());
         assertThat(input, is(out));
     }
+
+    @Test
+    public void yetAnotherSortNum1and2and10() {
+        String[] input = {
+                "1. Task.",
+                "8. Nask.",
+                "4. Task.",
+                "1. Xask."
+        };
+        String[] out = {
+                "1. Task.",
+                "1. Xask.",
+                "4. Task.",
+                "8. Nask."
+        };
+        Arrays.sort(input, new LexSort());
+        assertThat(input, is(out));
+    }
 }
