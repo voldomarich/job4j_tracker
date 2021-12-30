@@ -7,7 +7,6 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
 public class StringCompareTest {
-
     @Test
     public void whenStringsAreEqualToZero() {
         StringCompare compare = new StringCompare();
