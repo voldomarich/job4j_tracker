@@ -5,9 +5,17 @@ import java.util.Map;
 import java.util.Objects;
 
 public class User {
+    /**
+     * У пользователя два поля - паспортные данные и имя пользователя;
+     */
     private String passport;
     private String username;
 
+    /**
+     *Метод вызывается при создании экземпляра объекта совместно  с оператором new;
+     * @param passport
+     * @param username
+     */
     public User(String passport, String username) {
         this.passport = passport;
         this.username = username;

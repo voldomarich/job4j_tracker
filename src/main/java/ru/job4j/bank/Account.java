@@ -3,9 +3,17 @@ package ru.job4j.bank;
 import java.util.Objects;
 
 public class Account {
+    /**
+     * Класс Банковский счёт имеет два поля - реквизиты и баланс счёта;
+     */
     private String requisite;
     private double balance;
 
+    /**
+     * Метод вызывается при создании экземпляра объекта совместно с оператором new;
+     * @param requisite
+     * @param balance
+     */
     public Account(String requisite, double balance) {
         this.requisite = requisite;
         this.balance = balance;
@@ -27,6 +35,11 @@ public class Account {
         this.balance = balance;
     }
 
+    /**
+     * Переопределить метод нужно, чтобы сравнивать два значения requisite;
+     * @param o
+     * @return
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) {
