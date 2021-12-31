@@ -52,6 +52,10 @@ public class Account {
         return Objects.equals(requisite, account.requisite);
     }
 
+    /**
+     * Метод возвращает хэш-код коллекции в виде значения типа int
+     * @return
+     */
     @Override
     public int hashCode() {
         return Objects.hash(requisite);

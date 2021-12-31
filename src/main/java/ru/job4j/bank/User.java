@@ -1,7 +1,5 @@
 package ru.job4j.bank;
 
-import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 public class User {
