@@ -22,16 +22,20 @@ public class Attachment {
 
     @Override
     public String toString() {
-        return "{" +
-                "name='" + name + '\'' +
-                ", size=" + size +
-                '}';
+        return "{"
+                + "name='" + name + '\''
+                + ", size=" + size
+                + '}';
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Attachment that = (Attachment) o;
         return size == that.size && Objects.equals(name, that.name);
     }
