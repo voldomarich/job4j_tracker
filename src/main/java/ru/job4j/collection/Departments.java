@@ -16,10 +16,10 @@ public class Departments {
     }
 
     public static void sortAsc(List<String> deps) {
-        Collections.sort(deps, Comparator.naturalOrder());
+        deps.sort(Comparator.naturalOrder());
     }
 
     public static void sortDesc(List<String> deps) {
-        Collections.sort(deps, new DempDescComp());
+        deps.sort(new DempDescComp());
     }
 }
