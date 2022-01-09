@@ -1,7 +1,6 @@
 package ru.job4j.function;
 
 import org.junit.Test;
-import ru.job4j.lambda.FuncDiapason;
 
 import java.util.Arrays;
 import java.util.List;
