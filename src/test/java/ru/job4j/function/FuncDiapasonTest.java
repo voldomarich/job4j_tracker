@@ -25,8 +25,8 @@ public class FuncDiapasonTest {
 
     @Test
     public void whenExponentialFunctionThenLinearResults() {
-        List<Double> result = FuncDiapason.func(1, 4, x -> 2 * Math.pow(x, 6));
-        List<Double> expected = Arrays.asList(2D, 128D, 1458D);
+        List<Double> result = FuncDiapason.func(5, 8, x -> Math.pow(2, x));
+        List<Double> expected = Arrays.asList(32D, 64D, 128D);
         assertThat(result, is(expected));
     }
 }
