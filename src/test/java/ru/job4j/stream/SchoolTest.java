@@ -10,6 +10,7 @@ import static org.junit.Assert.*;
 import static org.hamcrest.core.Is.is;
 
 public class SchoolTest {
+
     @Test
     public void whenCollectClassA() {
         List<Student> students = List.of(
