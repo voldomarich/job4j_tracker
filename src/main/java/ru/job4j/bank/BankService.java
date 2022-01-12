@@ -73,12 +73,11 @@ public class BankService {
      * @return user аккаунт искомого пользователя
      */
     public User findByPassport(String passport) {
-        for (User user : users.keySet()) {
-            if (passport.equals(user.getPassport())) {
-                return user;
-            }
-        }
-        return null;
+        return users.keySet()
+                .stream()
+                .filter(s -> s.getPassport().equals((passport)))
+                .findFirst()
+                .orElse(null);
     }
 
     /**
@@ -90,17 +89,15 @@ public class BankService {
      * нам нужен конкретный по реквизиту)
      */
     public Account findByRequisite(String passport, String requisite) {
-        Account account = null;
         User user = findByPassport(passport);
         if (user != null) {
-            List<Account> list = users.get(user);
-            for (Account a : list) {
-                if (requisite.equals(a.getRequisite())) {
-                    account = a;
-                }
-            }
+            return users.get(user)
+                    .stream()
+                    .filter(s -> s.getRequisite().equals(requisite))
+                    .findFirst()
+                    .orElse(null);
         }
-        return account;
+        return null;
     }
 
     /**
@@ -109,7 +106,7 @@ public class BankService {
      * @param srcRequisite реквизиты банковского счёта, с которого переводим средства;
      * @param destPassport паспорт пользователя, на счёт которого переводим средства;
      * @param destRequisite реквизиты банковского счёта, на который переводим средства;
-     * @param amount сумма средств перевода
+     * @param amount сумма перевода
      * @return true, если баланс первого счёта снизился на amount,
      * а второго увеличился на amount или false, если этого не произошло
      */
