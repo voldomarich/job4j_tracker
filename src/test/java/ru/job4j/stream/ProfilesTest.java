@@ -26,12 +26,12 @@ public class ProfilesTest {
 
     @Test
     public void whenTestMethodCollectSortWithoutDuplicate() {
-        Address first = new Address("City3", "Street1", 1, 1);
+        Address first = new Address("City03", "Street1", 1, 1);
         Address second = new Address("City20", "Street2", 2, 2);
-        Address third = new Address("City1", "Street3", 3, 3);
-        Address fourth = new Address("City3", "Street1", 1, 1);
+        Address third = new Address("City01", "Street3", 3, 3);
+        Address fourth = new Address("City03", "Street1", 1, 1);
         Address fifth = new Address("City20", "Street2", 2, 2);
-        Address seventh = new Address("City1", "Street3", 3, 3);
+        Address seventh = new Address("City01", "Street3", 3, 3);
         List<Profile> profiles = Arrays.asList(
                 new Profile(second),
                 new Profile(fourth),
