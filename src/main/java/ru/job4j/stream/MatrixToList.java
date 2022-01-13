@@ -9,16 +9,9 @@ import java.util.stream.Stream;
 public class MatrixToList {
     public static List<Integer> convert(Integer[][] matrix) {
         List<Integer> list = new ArrayList<>();
-        for (Integer[] integers : matrix) {
-            for (Integer i : integers) {
-                Stream.of(matrix)
-                        .flatMap(integer -> Stream.of(integers))
-                        .map(integer -> i)
-                        .collect(Collectors.toList());
-            }
-        }
+        Stream.of(matrix)
+                .flatMap(List::stream)
+                .collect(Collectors.toList());
         return list;
     }
 }
-
-
