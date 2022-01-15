@@ -11,15 +11,21 @@ enum Value {
 }
 
 public class Card {
+    private Suit suit;
+    private Value value;
 
-    public Card(Suit suit, Value value) {
+    public Card(Suit suit) {
+        this.suit = suit;
+        }
+
+    public Card(Value value) {
+        this.value = value;
     }
 
     public static void main(String[] args) {
         Stream.of(Suit.values())
                 .flatMap(suit -> Stream.of(Value.values())
-                        .map(value -> suit + " " + value))
+                        .map(value -> new Card(suit) + " " + new Card(value))
                 .forEach(System.out::println);
         }
-    }
-
+    } 
