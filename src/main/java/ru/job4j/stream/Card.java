@@ -14,18 +14,17 @@ public class Card {
     private Suit suit;
     private Value value;
 
-    public Card(Suit suit) {
+    public Card(Suit suit, Value value) {
         this.suit = suit;
+        this.value = value;
         }
 
-    public Card(Value value) {
-        this.value = value;
-    }
-
     public static void main(String[] args) {
+        Suit suit = new Card();
+        Value value = new Value();
         Stream.of(Suit.values())
                 .flatMap(suit -> Stream.of(Value.values())
-                        .map(value -> new Card(suit) + " " + new Card(value))
+                        .map(value -> suit + " " + value)
                 .forEach(System.out::println);
         }
     } 
