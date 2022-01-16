@@ -11,8 +11,8 @@ enum Value {
 }
 
 public class Card {
-    private Suit suit;
-    private Value value;
+    private final Suit suit;
+    private final Value value;
 
     public Card(Suit suit, Value value) {
         this.suit = suit;
@@ -21,10 +21,10 @@ public class Card {
 
     @Override
     public String toString() {
-        return "Card{" +
-                "suit=" + suit +
-                ", value=" + value +
-                '}';
+        return "Card{"
+                + "suit=" + suit
+                + ", value=" + value
+                + '}';
     }
 
     public static void main(String[] args) {
