@@ -17,14 +17,14 @@ public class Car {
 
     @Override
     public String toString() {
-        return "Car{" +
-                "brand='" + brand + '\'' +
-                ", model='" + model + '\'' +
-                ", created=" + created +
-                ", volume=" + volume +
-                ", color='" + color + '\'' +
-                ", price='" + price + '\'' +
-                '}';
+        return "Car{"
+                + "brand='" + brand + '\''
+                + ", model='" + model + '\''
+                + ", created=" + created
+                + ", volume=" + volume
+                + ", color='" + color + '\''
+                + ", price='" + price + '\''
+                + '}';
     }
 
     static class Builder {
@@ -96,6 +96,6 @@ public class Car {
                 .buildColor("Brown")
                 .buildPrice("2 200 000 rub")
                 .build();
-        System.out.println(car);
+        System.out.println(carAnother);
     }
 }
