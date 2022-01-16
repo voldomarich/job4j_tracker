@@ -13,7 +13,7 @@ public class ListToMapTest {
     @Test
     public void whenInputListNotHaveDuplicate() {
         List<Student> list = Arrays.asList(
-                new Student("Ivanov",30),
+                new Student("Ivanov", 30),
                 new Student("Petrov", 40),
                 new Student("Sidorov", 50)
         );
