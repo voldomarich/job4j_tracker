@@ -3,21 +3,21 @@ package ru.job4j.stream;
 import java.util.Objects;
 
 public class Student {
-    private int score;
 
     private String surname;
+    private int score;
 
-    public Student(int score, String surname) {
-        this.score = score;
+    public Student(String surname, int score) {
         this.surname = surname;
-    }
-
-    public int getScore() {
-        return score;
+        this.score = score;
     }
 
     public String getSurname() {
         return surname;
+    }
+
+    public int getScore() {
+        return score;
     }
 
     @Override
