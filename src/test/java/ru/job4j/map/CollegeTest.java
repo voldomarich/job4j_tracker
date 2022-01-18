@@ -10,7 +10,6 @@ import static org.junit.Assert.*;
 import static org.hamcrest.core.Is.is;
 
 public class CollegeTest {
-
     @Test
     public void whenAccountIsOptionalEmpty() {
         Map<Student, Set<Subject>> students = Map.of(
@@ -44,7 +43,9 @@ public class CollegeTest {
                 )
         );
         College college = new College(students);
-        assertThat(college.findByAccount("000001").get().getGroup(), is("201-18-15"));
+        if(college.findByAccount("000001").isPresent()) {
+            assertThat(college.findByAccount("000001").get().getGroup(), is("201-18-15"));
+        }
     }
 
     @Test
@@ -98,7 +99,8 @@ public class CollegeTest {
                 )
         );
         College college = new College(students);
-        assertThat(college.findBySubjectName("000002", "Sociology").get().getScore(), is(65));
+        if (college.findBySubjectName("000002", "Sociology").isPresent()) {
+            assertThat(college.findBySubjectName("000002", "Sociology").get().getScore(), is(65));
+        }
     }
-
 }
