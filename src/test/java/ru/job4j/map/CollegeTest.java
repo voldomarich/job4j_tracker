@@ -43,7 +43,7 @@ public class CollegeTest {
                 )
         );
         College college = new College(students);
-        if(college.findByAccount("000001").isPresent()) {
+        if (college.findByAccount("000001").isPresent()) {
             assertThat(college.findByAccount("000001").get().getGroup(), is("201-18-15"));
         }
     }
