@@ -69,7 +69,7 @@ public class BankService {
      * @param passport паспортные данные, значение типа String, по которым нужно найти аккаунт;
      * @return user аккаунт искомого пользователя
      */
-    public Optional<User> findByPassport(String passport) {
+    public User findByPassport(String passport) {
         return users.keySet()
                 .stream()
                 .filter(s -> s.getPassport().equals((passport)))
@@ -85,16 +85,17 @@ public class BankService {
      * @return account банковский счёт пользователя (у него их может быть несколько,
      * нам нужен конкретный по реквизиту)
      */
-    public Optional<User> findByRequisite(String passport, String requisite) {
-        Optional<User> user = findByPassport(passport);
+    public Optional<Account> findByRequisite(String passport, String requisite) {
+        Optional<Account> account = Optional.empty();
+        User user = findByPassport(passport);
         if (user != null) {
-            return users.get(user)
+           return users.get(user)
                     .stream()
                     .filter(s -> s.getRequisite().equals(requisite))
                     .findFirst()
                     .orElse(null);
         }
-        return null;
+        return account;
     }
 
     /**
@@ -110,8 +111,8 @@ public class BankService {
     public boolean transferMoney(String srcPassport, String srcRequisite,
                                  String destPassport, String destRequisite, double amount) {
         boolean rsl = false;
-        Optional<Account> srcAccount = findByRequisite(srcPassport, srcRequisite);
-        Optional<Account> destAccount = findByRequisite(destPassport, destRequisite);
+        Account srcAccount = findByRequisite(srcPassport, srcRequisite);
+        Account destAccount = findByRequisite(destPassport, destRequisite);
         if (srcAccount != null && destAccount != null && srcAccount.getBalance() >= amount) {
             srcAccount.setBalance(srcAccount.getBalance() - amount);
             destAccount.setBalance(destAccount.getBalance() + amount);
@@ -119,4 +120,5 @@ public class BankService {
         }
         return rsl;
     }
+}
 }
