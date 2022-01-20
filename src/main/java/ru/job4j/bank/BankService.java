@@ -22,8 +22,11 @@ public class BankService {
     private final Map<User, List<Account>> users = new HashMap<>();
 
     /**
-     * Метод принимает на вход пользователя и добавляет его в коллекцию users,
+     * Метод принимает на вход пользователя и добавляет его в коллекцию users(список пользователей),
      * предварительно проверяя, нет ли его уже в исходной коллекциии users;
+     *
+     * в качестве списка его банковских счетов создаёт новый, пока пустой список(new ArrayList<>());
+     *
      * @param user - пользователь, который добавляется в коллекцию;
      */
     public void addUser(User user) {
@@ -31,7 +34,7 @@ public class BankService {
     }
 
     /**
-     * Метод добавляет к списку банковских счетов пользователя (User) новый счёт (account);
+     * Метод добавляет к списку банковских счетов (list) пользователя новый счёт (account);
      *
      * Метод принимает на вход значение типа String - паспортные данные пользователя
      * (чтобы по ним найти пользователя, которому принадлежат эти паспортные данные),
@@ -95,10 +98,13 @@ public class BankService {
     public Optional<Account> findByRequisite(String passport, String requisite) {
         Optional<Account> account = Optional.empty();
         Optional<User> user = findByPassport(passport);
-        return user.map(value -> users.get(value)
-                .stream()
-                .filter(s -> s.getRequisite().equals(requisite))
-                .findFirst()).orElse(account);
+        if (user.isPresent()) {
+            return users.get(user.get())
+                    .stream()
+                    .filter(s -> s.getRequisite().equals(requisite))
+                    .findFirst();
+        }
+        return account;
     }
 
     /**
