@@ -4,16 +4,18 @@ import java.util.*;
 /**
  * Класс систематизирует перечень клиентов(пользователей) банка, их счетов и паспортных данных
  * и позволяет быстро находить необходимую информацию,
- * в т.ч. о передвижении денежных средств
- * между счетами клиентов
+ * в т.ч. о передвижении денежных средств между счетами клиентов
+ *
  * @author Vladimir Bekasov
  * @version 1.0
  */
+
 public class BankService {
 
     /**
      * создаём коллекцию под названием users типа HashMap,
-     * где будут храниться данные типа User (т.е. список клиентов);
+     * где будут храниться данные двух типов: User и List<Account>
+     * (т.е. пользователь и список его банковских счетов);
      * делаем её final, чтобы нельзя было унаследовать её значение;
      */
 
@@ -29,9 +31,10 @@ public class BankService {
     }
 
     /**
-     * Метод принимает на вход значение типа String - паспортные данные
-     * (чтобы по ним найти пользователя,
-     * которому принадлежат эти паспортные данные),
+     * Метод добавляет к списку банковских счетов пользователя (User) новый счёт (account);
+     *
+     * Метод принимает на вход значение типа String - паспортные данные пользователя
+     * (чтобы по ним найти пользователя, которому принадлежат эти паспортные данные),
      * а также значение типа Account - банковский счёт,
      * который необходимо добавить конкретному пользователю
      * (у одного пользователя может быть несколько счетов);
@@ -40,23 +43,28 @@ public class BankService {
      * что пользователь имеет полные данные (не равен null);
      *
      * Далее достаём пользователя из коллекции users,
-     * на выходе получаем список счетов пользователя типа List<Account> (реквизиты + баланс счёта);
+     * на выходе получаем список счетов пользователя list типа List<Account>
+     * (реквизиты счёта + баланс счёта);
      * Проверяем, что список с данными пользователя не содержит уже тот банковский счёт,
      * который мы собрались ему добавить;
-     * Далее добавляем новый банковский счёт в список уже имеющихся счетов пользователя;
+     *
+     * Далее добавляем новый банковский счёт в list - список уже имеющихся счетов пользователя;
+     *
+     * В завершении вкладываем в коллекцию users (список всех пользователей)
+     * обновлённые данные для нашего пользователя (апгрейдим его list - список счетов);
      *
      * @param passport паспортные данные, значение типа String;
      * @param account банковский счёт, который необходимо добавить к списку счетов пользователя;
      */
-    public Optional<User> addAccount(String passport, Account account) {
+    public void addAccount(String passport, Account account) {
         Optional<User> opt = findByPassport(passport);
         if (opt.isPresent()) {
             List<Account> list = users.get(opt.get());
             if (!list.contains(account)) {
-                Optional.of(list.add(account));
+                list.add(account);
+                users.put(opt.get(), list);
             }
         }
-        return opt;
     }
 
     /**
@@ -69,16 +77,15 @@ public class BankService {
      * @param passport паспортные данные, значение типа String, по которым нужно найти аккаунт;
      * @return user аккаунт искомого пользователя
      */
-    public User findByPassport(String passport) {
+    public Optional<User> findByPassport(String passport) {
         return users.keySet()
                 .stream()
                 .filter(s -> s.getPassport().equals((passport)))
-                .findFirst()
-                .orElse(null);
+                .findFirst();
     }
 
     /**
-     * Метод ищет банковский счёт пользователя по паспорту пользователя
+     * Метод ищет банковский счёт пользователя (account) по паспорту пользователя
      * и по реквизиту банковского счёта
      * @param passport паспорт пользователя User
      * @param requisite реквизит банковского счёта Account
@@ -87,15 +94,11 @@ public class BankService {
      */
     public Optional<Account> findByRequisite(String passport, String requisite) {
         Optional<Account> account = Optional.empty();
-        User user = findByPassport(passport);
-        if (user != null) {
-           return users.get(user)
-                    .stream()
-                    .filter(s -> s.getRequisite().equals(requisite))
-                    .findFirst()
-                    .orElse(null);
-        }
-        return account;
+        Optional<User> user = findByPassport(passport);
+        return user.map(value -> users.get(value)
+                .stream()
+                .filter(s -> s.getRequisite().equals(requisite))
+                .findFirst()).orElse(account);
     }
 
     /**
@@ -111,14 +114,14 @@ public class BankService {
     public boolean transferMoney(String srcPassport, String srcRequisite,
                                  String destPassport, String destRequisite, double amount) {
         boolean rsl = false;
-        Account srcAccount = findByRequisite(srcPassport, srcRequisite);
-        Account destAccount = findByRequisite(destPassport, destRequisite);
-        if (srcAccount != null && destAccount != null && srcAccount.getBalance() >= amount) {
-            srcAccount.setBalance(srcAccount.getBalance() - amount);
-            destAccount.setBalance(destAccount.getBalance() + amount);
+        Optional<Account> srcAccount = findByRequisite(srcPassport, srcRequisite);
+        Optional<Account> destAccount = findByRequisite(destPassport, destRequisite);
+        if (srcAccount.isPresent() && destAccount.isPresent()
+                && srcAccount.get().getBalance() >= amount) {
+            srcAccount.get().setBalance(srcAccount.get().getBalance() - amount);
+            destAccount.get().setBalance(destAccount.get().getBalance() + amount);
             rsl = true;
         }
         return rsl;
     }
-}
 }
