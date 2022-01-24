@@ -6,8 +6,7 @@ import java.util.Map;
 import java.util.Objects;
 
 public class Tuple {
-
-    private final String name;
+    private String name;
     private double score;
 
     public Tuple(String name, double score) {
@@ -19,16 +18,11 @@ public class Tuple {
         this.name = item.getName();
     }
 
-    public Tuple(Tuple item) {
-        this.name = item.getKey();
-        this.score = item.getValue();
-    }
-
-    public String getName() {
+    public String getKey() {
         return name;
     }
 
-    public double getScore() {
+    public double getValue() {
         return score;
     }
 
