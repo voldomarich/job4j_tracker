@@ -1,5 +1,6 @@
 package ru.job4j.stream;
 
+import java.security.Key;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,7 +19,7 @@ public class Analyze {
     public static List<Tuple> averageScoreBySubject(Stream<Pupil> stream) {
         return stream
                 .map(Tuple::new)
-                .flatMap(Tuple::getName)
+                .flatMap(Tuple::getValue)
                 .mapToDouble(Subject::getScore)
                 .average()
                 .collect(Collectors.toList());
@@ -34,7 +35,7 @@ public class Analyze {
                 .collect(Collectors.toList());
     }
 
-    public static List<Tuple> bestPupil(Stream<Pupil> stream) {
+    public static Tuple bestPupil(Stream<Pupil> stream) {
         return stream
                 .flatMap(e -> e.getSubjects().stream())
                 .collect(Collectors.groupingBy(Subject::getName, LinkedHashMap::new,
@@ -45,11 +46,11 @@ public class Analyze {
                 .orElse(0D);
     }
 
-    public static List<Tuple> bestSubject(Stream<Pupil> stream) {
+    public static Tuple bestSubject(Stream<Pupil> stream) {
         return stream
                 .map(Tuple::new)
-                .flatMap(e -> e.getName())
-                .mapToInt(Tuple::getScore)
+                .flatMap(Tuple::getValue)
+                .mapToInt(Subject::getScore)
                 .sum()
                 .max(Collectors.toList())
                 .orElse(null);
