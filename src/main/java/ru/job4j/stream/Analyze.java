@@ -1,9 +1,7 @@
 package ru.job4j.stream;
 
 import java.security.Key;
-import java.util.Comparator;
-import java.util.LinkedHashMap;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -41,29 +39,22 @@ public class Analyze {
                 .collect(Collectors.toList());
     }
 
-    public static Tuple bestPupil(Stream<Pupil> stream) {
-        return stream
-                .flatMap(e -> e.getSubjects().stream())
-                .collect(Collectors.groupingBy(Pupil::getName, Pupil::getSubjects, LinkedHashMap::new,
-                        Collectors.summingInt(Subject::getScore))
-                .entrySet().stream()
-                .map(e -> new Tuple(e.getKey(), e.getValue()))
-                .max(Tuple::getValue)
-                .orElse(null);
-
+    public static Tuple bestPupil(List<Pupil> list) {
+        Map<String, List<Subject>> map = new LinkedHashMap<>();
+        for (Pupil pupil : list) {
+            map.put(pupil.getName(), pupil.getSubjects());
+            List<Tuple> tupleList = new ArrayList<>();
+            for (Subject subject : pupil.getSubjects()) {
+                for (Tuple tuple : tupleList) {
+                    tuple.setName(subject.getName());
+                    tuple.setScore(subject.getScore());
+                    tuple.setScore(tuple.getValue());
+                    Math.max(this.getValue(), tuple.getValue());
+                }
+            }
+        }
     }
 
     public static Tuple bestSubject(Stream<Pupil> stream) {
-        return stream
-                .map(pupil -> new Tuple(
-                pupil.getName(),
-                pupil.getSubjects()
-                        .stream()
-                        .mapToInt(Subject::getScore)
-                )
-                )
-                .sum()
-                .max(Subject::getScore)
-                .orElse(null);
-    }
+
 }
