@@ -1,29 +1,15 @@
 package ru.job4j.stream;
 
-import ru.job4j.tracker.tracker.Item;
-
-import java.util.Map;
 import java.util.Objects;
 
 public class Tuple {
+
     private String name;
     private double score;
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setScore(double score) {
-        this.score = score;
-    }
 
     public Tuple(String name, double score) {
         this.name = name;
         this.score = score;
-    }
-
-    public Tuple(Pupil item) {
-        this.name = item.getName();
     }
 
     public String getKey() {
