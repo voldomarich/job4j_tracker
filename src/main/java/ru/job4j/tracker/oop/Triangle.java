@@ -34,10 +34,10 @@ public class Triangle {
     }
 
     public static void main(String[] args) {
-        Point a = new Point(11, 29);
-        Point b = new Point(4, 5);
-        Point c = new Point(10, 0);
+        Point a = new Point(3, 10);
+        Point b = new Point(0, 6);
+        Point c = new Point(10, 6);
         Triangle triangle = new Triangle(a, b, c);
-        triangle.area();
+        System.out.println(triangle.area());
     }
 }

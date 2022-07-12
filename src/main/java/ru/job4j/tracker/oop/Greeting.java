@@ -6,7 +6,7 @@ import java.util.Random;
 public class Greeting {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        System.out.print("Введите Ваш вопрос");
+
         String name = input.nextLine();
         int answer = new Random().nextInt(3);
         if (answer == 0) {
@@ -16,6 +16,7 @@ public class Greeting {
         } else {
             System.out.println("Может быть");
         }
+        System.out.print("Введите Ваш вопрос");
         System.out.println(name + ", рад Вас видеть!");
     }
 }

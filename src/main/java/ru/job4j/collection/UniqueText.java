@@ -12,9 +12,13 @@ public class UniqueText {
         for (String word : origin) {
             check.add(word);
         }
+        int count = 0;
         for (String str : text) {
             if (!check.contains(str)) {
-                rsl =  false;
+                count++;
+            }
+            if (count > 3) {
+                rsl = false;
                 break;
             }
         }
