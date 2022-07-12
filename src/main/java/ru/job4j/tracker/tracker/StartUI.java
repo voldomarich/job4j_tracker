@@ -3,6 +3,7 @@ package ru.job4j.tracker.tracker;
 import java.util.List;
 
 public class StartUI {
+
     private final Output out;
 
     public StartUI(Output out) {
@@ -24,10 +25,12 @@ public class StartUI {
     }
 
         private void showMenu(List<UserAction> actions) {
+            System.out.println();
             out.println("Menu:");
             for (int index = 0; index < actions.size(); index++) {
                 out.println(index + ". " + actions.get(index).name());
             }
+            System.out.println();
         }
 
         public static void main(String[] args) {
