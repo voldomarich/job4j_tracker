@@ -1,6 +1,7 @@
 package ru.job4j.stream;
 
 public class Profile {
+
     private Address address;
 
     public Profile(Address address) {
@@ -10,5 +11,4 @@ public class Profile {
     public Address getAddress() {
         return address;
     }
-
 }

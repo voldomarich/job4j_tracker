@@ -5,7 +5,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.TreeMap;
 
-
 public class MostUsedCharacter {
 
     public static char getMaxCount(String str) {

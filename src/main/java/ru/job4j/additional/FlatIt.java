@@ -17,6 +17,7 @@ public class FlatIt {
     }
 
     private static <T> Stream<T> iteratorToStream(Iterator<T> it) {
-        return StreamSupport.stream(Spliterators.spliteratorUnknownSize(it, Spliterator.ORDERED), false);
+        return StreamSupport.stream(Spliterators.spliteratorUnknownSize(it, Spliterator.ORDERED),
+                false);
     }
 }

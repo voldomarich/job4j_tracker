@@ -13,8 +13,7 @@ public class GeomProgression {
             while (count > 0) {
                 i = i * denominator;
                 array.set(result++, i);
-                i =
-                        sum += i;
+                sum += i;
                 count--;
             }
         }
