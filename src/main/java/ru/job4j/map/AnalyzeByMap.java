@@ -24,10 +24,10 @@ public class AnalyzeByMap {
         for (Pupil pupil : pupils) {
             for (Subject subject : pupil.getSubjects()) {
                 scorePupil += subject.getScore();
-                Label label = new Label(pupil.getName(),
-                        scorePupil / pupil.getSubjects().size());
-                result.add(label);
             }
+            Label label = new Label(pupil.getName(),
+                    scorePupil / pupil.getSubjects().size());
+            result.add(label);
         }
         return result;
     }
@@ -39,43 +39,43 @@ public class AnalyzeByMap {
             for (Subject subject : pupil.getSubjects()) {
                 map.put(subject.getName(), (double) subject.getScore());
                 map.merge(subject.getName(), (double) subject.getScore(), Double::sum);
-                Label label = new Label(subject.getName(), map.get(subject.getName()) / map.size());
-                result.add(label);
-                }
             }
+        }
+        for (String key : map.keySet()) {
+            Label label = new Label(key, map.get(key));
+            result.add(label);
+        }
         return result;
     }
 
     public static Label bestSubject(List<Pupil> pupils) {
-        Label result = null;
-        List<Label> list = new ArrayList<>();
+        List<Label> result = new ArrayList<>();
         Map<String, Double> map = new LinkedHashMap<>();
         for (Pupil pupil : pupils) {
             for (Subject subject : pupil.getSubjects()) {
                 map.put(subject.getName(), (double) subject.getScore());
                 map.merge(subject.getName(), (double) subject.getScore(), Double::sum);
-                Label label = new Label(subject.getName(), map.get(subject.getName()));
-                list.add(label);
-                list.sort(Comparator.naturalOrder());
-                result = list.get(list.size() - 1);
             }
         }
-        return result;
+        for (String key : map.keySet()) {
+            Label label = new Label(key, map.get(key));
+            result.add(label);
+        }
+        result.sort(Comparator.naturalOrder());
+        return result.get(result.size() - 1);
     }
 
     public static Label bestPupil(List<Pupil> pupils) {
-        Label result = null;
-        List<Label> list = new ArrayList<>();
+        List<Label> result = new ArrayList<>();
         double scorePupil = 0D;
         for (Pupil pupil : pupils) {
             for (Subject subject : pupil.getSubjects()) {
                 scorePupil += subject.getScore();
-                Label label = new Label(pupil.getName(), scorePupil);
-                list.add(label);
-                list.sort(Comparator.naturalOrder());
-                result = list.get(list.size() - 1);
             }
+            Label label = new Label(pupil.getName(), scorePupil);
+            result.add(label);
         }
-        return result;
+        result.sort(Comparator.naturalOrder());
+        return result.get(result.size() - 1);
     }
 }
