@@ -61,13 +61,4 @@ public class Tracker {
         }
         return rsl;
     }
-
-    public static void main(String[] args) {
-        Output output  = new ConsoleOutput();
-        for (int i = 0; i < 1000; i++) {
-            new CreateHugeAction(output);
-            new DeleteHugeAction(output);
-        }
-        System.gc();
-    }
 }

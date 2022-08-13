@@ -3,6 +3,7 @@ package ru.job4j.map;
 import java.util.*;
 
 public class AnalyzeByMap {
+
     public static double averageScore(List<Pupil> pupils) {
         double result = 0D;
         int sum = 0;

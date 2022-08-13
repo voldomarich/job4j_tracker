@@ -1,8 +1,5 @@
 package ru.job4j.tracker.tracker;
 
-import java.util.LinkedList;
-import java.util.List;
-
 public class CreateHugeAction implements UserAction {
 
     private final Output out;
@@ -19,13 +16,13 @@ public class CreateHugeAction implements UserAction {
     @Override
     public boolean execute(Input input, Tracker tracker) {
         out.println("=== Create new Items ====");
-        List<Item> items = new LinkedList<>();
         String name = input.askStr("Enter name: ");
-        Item item = new Item(name);
-        items.add(item);
-        for (Item i : items) {
-            tracker.add(i);
+        int n = 500_000;
+        for (int i = 1; i < n + 1; i++) {
+            Item item = new Item(name);
+            tracker.add(item);
             out.println("Добавленная заявка: " + i);
+            i++;
         }
         return true;
     }

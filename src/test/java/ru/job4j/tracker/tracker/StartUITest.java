@@ -15,6 +15,7 @@ import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertThat;
 
 public class StartUITest {
+
     @Test
     public void createItem() {
         Output out = new StubOutput();
@@ -66,7 +67,8 @@ public class StartUITest {
                         + "0. Edit item" + ln
                         + "1. Exit Program" + ln
                         + "=== Edit item ===" + ln
-                        + "Заявка изменена успешно. " + one.getId() + ln
+                        + "Заявка до редактирования: " + one + ln
+                        + "Заявка изменена успешно: " + out + ln
                         + "Menu:" + ln
                         + "0. Edit item" + ln
                         + "1. Exit Program" + ln
