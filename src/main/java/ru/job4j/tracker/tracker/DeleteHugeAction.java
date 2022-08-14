@@ -17,12 +17,10 @@ public class DeleteHugeAction implements UserAction {
     public boolean execute(Input input, Tracker tracker) {
         out.println("=== Delete Items ===");
         int n = input.askInt("Enter ID1: ");
-        for (int i = 1; i < n; i++) {
+        for (int i = n; i > 0; i--) {
             tracker.delete(i);
             out.println("Заявки удалены успешно. ");
-            i--;
         }
-        out.println("Что-то пошло не так, и заявки не удалились.");
         return true;
     }
 }

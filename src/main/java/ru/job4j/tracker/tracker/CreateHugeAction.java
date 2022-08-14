@@ -19,10 +19,9 @@ public class CreateHugeAction implements UserAction {
         String name = input.askStr("Enter name: ");
         int n = 500_000;
         for (int i = 1; i < n + 1; i++) {
-            Item item = new Item(name);
+            Item item = new Item(name + i);
             tracker.add(item);
-            out.println("Добавленная заявка: " + i);
-            i++;
+            out.println("Добавленная заявка: " + name + i);
         }
         return true;
     }
