@@ -94,39 +94,6 @@ public class AnalyzeByMapTest {
     }
 
     @Test
-    public void whenAnotherListOfSubjectAverage() {
-        List<Label> average = AnalyzeByMap.averageScoreBySubject(
-                List.of(
-                        new Pupil("Ivanov",
-                                List.of(
-                                        new Subject("Math", 100),
-                                        new Subject("Lang", 100),
-                                        new Subject("Philosophy", 100)
-                                )
-                        ),
-                        new Pupil("Petrov",
-                                List.of(
-                                        new Subject("Math", 60),
-                                        new Subject("Lang", 60),
-                                        new Subject("Philosophy", 60)
-                                )
-                        ),
-                        new Pupil("Safronov",
-                                List.of(
-                                        new Subject("Lang", 89),
-                                        new Subject("Philosophy", 86)
-                                )
-                        )
-                )
-        );
-        assertThat(average).hasSameElementsAs(List.of(
-                new Label("Math", 80D),
-                new Label("Lang", 83D),
-                new Label("Philosophy", 82D)
-        ));
-    }
-
-    @Test
     public void whenBestSubject() {
         Label best = AnalyzeByMap.bestSubject(
                 List.of(

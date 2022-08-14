@@ -19,8 +19,8 @@ public class AnalyzeByMap {
 
     public static List<Label> averageScoreByPupil(List<Pupil> pupils) {
         List<Label> result = new ArrayList<>();
-        double scorePupil = 0D;
         for (Pupil pupil : pupils) {
+            double scorePupil = 0D;
             for (Subject subject : pupil.getSubjects()) {
                 scorePupil += subject.getScore();
             }
@@ -64,8 +64,8 @@ public class AnalyzeByMap {
 
     public static Label bestPupil(List<Pupil> pupils) {
         List<Label> result = new ArrayList<>();
-        double scorePupil = 0D;
         for (Pupil pupil : pupils) {
+            double scorePupil = 0D;
             for (Subject subject : pupil.getSubjects()) {
                 scorePupil += subject.getScore();
             }

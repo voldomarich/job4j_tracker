@@ -14,7 +14,7 @@ public class Analyze {
                 .orElse(0D);
     }
 
-    public static List<Tuple> averageScoreBySubject(Stream<Pupil> stream) {
+    public static List<Tuple> averageScoreByPupil(Stream<Pupil> stream) {
         return stream
                 .map(p -> new Tuple(
                                 p.getName(),
@@ -28,7 +28,7 @@ public class Analyze {
                 .collect(Collectors.toList());
     }
 
-    public static List<Tuple> averageScoreByPupil(Stream<Pupil> stream) {
+    public static List<Tuple> averageScoreBySubject(Stream<Pupil> stream) {
         return stream
                 .flatMap(p -> p.getSubjects().stream())
                 .collect(
@@ -48,20 +48,6 @@ public class Analyze {
 
     }
 
-    public static Tuple bestPupil(Stream<Pupil> stream) {
-        return stream
-                .map(p -> new Tuple(
-                                p.getName(),
-                                p.getSubjects()
-                                        .stream()
-                                        .mapToInt(Subject::getScore)
-                                        .sum()
-                        )
-                )
-                .max(Comparator.comparingDouble(Tuple::getValue))
-                .orElse(null);
-    }
-
     public static Tuple bestSubject(Stream<Pupil> stream) {
         return stream
                 .flatMap(p -> p.getSubjects().stream())
@@ -79,5 +65,18 @@ public class Analyze {
                 .max(Comparator.comparingDouble(Tuple::getValue))
                 .orElse(null);
     }
-}
 
+    public static Tuple bestPupil(Stream<Pupil> stream) {
+        return stream
+                .map(p -> new Tuple(
+                                p.getName(),
+                                p.getSubjects()
+                                        .stream()
+                                        .mapToInt(Subject::getScore)
+                                        .sum()
+                        )
+                )
+                .max(Comparator.comparingDouble(Tuple::getValue))
+                .orElse(null);
+    }
+}
