@@ -13,36 +13,31 @@ public class PasswordValidator {
                             password));
         }
         for (int i = 0; i < password.length(); i++) {
+
             if (!isWhiteSpace(password.charAt(i))) {
-                return password;
+                throw new IllegalArgumentException(
+                        String.format("Пароль: %s не должен содержать пробел", password));
             }
-            throw new IllegalArgumentException(
-                    String.format("Пароль: %s не должен содержать пробел", password));
             if (Character.isLowerCase(password.charAt(i))) {
-                return password;
-            }
                 throw new IllegalArgumentException(
                         String.format("Пароль: %s должен содержать хотя бы один символ "
                                 + "в нижнем регистре", password));
+            }
             if (Character.isUpperCase(password.charAt(i))) {
-                return password;
+                throw new IllegalArgumentException(
+                        String.format("Пароль: %s должен содержать хотя бы один символ "
+                                + "в верхнем регистре", password));
             }
-            throw new IllegalArgumentException(
-                    String.format("Пароль: %s должен содержать хотя бы один символ "
-                            + "в верхнем регистре", password));
             if (Character.isDigit(password.charAt(i))) {
-                return password;
+                throw new IllegalArgumentException(
+                        String.format("Пароль: %s должен содержать хотя бы одну цифру", password));
             }
-            throw new IllegalArgumentException(
-                    String.format("Пароль: %s должен содержать хотя бы одну цифру", password));
-            if (isSpecialSymbol(password.charAt(i))) {
-                return password;
+            if (!isSpecialSymbol(password.charAt(i))) {
+                throw new IllegalArgumentException(
+                        String.format("Пароль: %s должен содержать хотя бы один специальный символ",
+                                password));
             }
-            throw new IllegalArgumentException(
-                    String.format("Пароль: %s должен содержать хотя бы один специальный символ",
-                            password));
         }
-
             String[] string = {"qwerty", "12345", "password", "admin", "user"};
             for (String s : string) {
                     if (password.contains(s.toLowerCase())

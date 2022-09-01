@@ -30,7 +30,7 @@ class PasswordValidatorTest {
 
     @Test
     void containsLessSymbols() {
-        assertThatThrownBy(() -> PasswordValidator.validate("swert"))
+        assertThatThrownBy(() -> PasswordValidator.validate("sW_2ert"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("должна быть от 8 до 32 символов включительно");
     }
@@ -61,6 +61,13 @@ class PasswordValidatorTest {
         assertThatThrownBy(() -> PasswordValidator.validate("lfkd$siVn_dfv"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("хотя бы одну цифру");
+    }
+
+    @Test
+    void specialSymbol() {
+        assertThatThrownBy(() -> PasswordValidator.validate("lfkdsiVn100dfv"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("хотя бы один специальный символ");
     }
 
     @Test
