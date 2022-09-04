@@ -72,7 +72,7 @@ class PasswordValidatorTest {
 
     @Test
     void qwertyLike() {
-        assertThatThrownBy(() -> PasswordValidator.validate("PassWord123%"))
+        assertThatThrownBy(() -> PasswordValidator.validate("PaSSWord123%"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("не должен содержать данное слово в любом регистре");
     }
