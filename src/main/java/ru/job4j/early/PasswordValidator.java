@@ -14,8 +14,8 @@ public class PasswordValidator {
         }
         String[] string = {"qwerty", "12345", "password", "admin", "user"};
         for (String s : string) {
-            if (password.contains(s.toLowerCase())
-                    || password.contains(s.toUpperCase())) {
+            if (password.toLowerCase().contains(s.toLowerCase())
+                    || password.toUpperCase().contains(s.toUpperCase())) {
                     throw new IllegalArgumentException(
                             String.format("Пароль: %s не должен содержать данное слово "
                                     + "в любом регистре: %s", password, s));

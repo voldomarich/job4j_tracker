@@ -29,6 +29,13 @@ class PasswordValidatorTest {
     }
 
     @Test
+    void containsWhiteSpace1() {
+        assertThatThrownBy(() -> PasswordValidator.validate("100%infdlksd FNFb820j%"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("не должен содержать пробел");
+    }
+
+    @Test
     void containsLessSymbols() {
         assertThatThrownBy(() -> PasswordValidator.validate("sW_2ert"))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -86,7 +93,7 @@ class PasswordValidatorTest {
 
     @Test
     void qwertyLike3() {
-        assertThatThrownBy(() -> PasswordValidator.validate("PaROL_1bcsdj"))
+        assertThatThrownBy(() -> PasswordValidator.validate("1bcuSeR_sdj"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("не должен содержать данное слово в любом регистре");
     }
