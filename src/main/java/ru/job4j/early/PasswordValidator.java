@@ -16,12 +16,12 @@ public class PasswordValidator {
         for (String s : string) {
             if (password.contains(s.toLowerCase())
                     || password.contains(s.toUpperCase())) {
-                throw new IllegalArgumentException(
-                        String.format("Пароль: %s не должен содержать данное слово "
-                                + "в любом регистре: %s", password, s));
+                    throw new IllegalArgumentException(
+                            String.format("Пароль: %s не должен содержать данное слово "
+                                    + "в любом регистре: %s", password, s));
+                }
             }
-        }
-        boolean statusWhiteSpace = false;
+        boolean statusWhiteSpace = true;
         boolean statusLowerCase = false;
         boolean statusUpperCase = false;
         boolean statusDigit = false;
@@ -29,19 +29,21 @@ public class PasswordValidator {
 
         for (int i = 0; i < password.length(); i++) {
 
-            if (!isWhiteSpace(password.charAt(i))
-                    && Character.isLowerCase(password.charAt(i))
-                    && Character.isUpperCase(password.charAt(i))
-                    && Character.isDigit(password.charAt(i))
-                    && !isSpecialSymbol(password.charAt(i))) {
-
-                statusWhiteSpace = true;
+            if (isWhiteSpace(password.charAt(i))) {
+                statusWhiteSpace = false;
+            }
+            if (Character.isLowerCase(password.charAt(i))) {
                 statusLowerCase = true;
+            }
+            if (Character.isUpperCase(password.charAt(i))) {
                 statusUpperCase = true;
+            }
+            if (Character.isDigit(password.charAt(i))) {
                 statusDigit = true;
+            }
+            if (isSpecialSymbol(password.charAt(i))) {
                 statusSpecialSymbol = true;
             }
-            break;
         }
 
         if (!statusWhiteSpace) {
@@ -50,22 +52,23 @@ public class PasswordValidator {
         }
         if (!statusLowerCase) {
             throw new IllegalArgumentException(
-                    String.format("Пароль: %s должен содержать хотя бы один специальный символ",
-                            password));
+                    String.format("Пароль: %s должен содержать хотя бы один символ "
+                            + "в нижнем регистре", password));
         }
         if (!statusUpperCase) {
             throw new IllegalArgumentException(
                     String.format("Пароль: %s должен содержать хотя бы один символ "
-                            + "в нижнем регистре", password));
+                            + "в верхнем регистре", password));
         }
         if (!statusDigit) {
             throw new IllegalArgumentException(
-                    String.format("Пароль: %s должен содержать хотя бы один символ "
-                            + "в верхнем регистре", password));
+                    String.format("Пароль: %s должен содержать хотя бы одну цифру", password));
+
         }
         if (!statusSpecialSymbol) {
             throw new IllegalArgumentException(
-                    String.format("Пароль: %s должен содержать хотя бы одну цифру", password));
+                    String.format("Пароль: %s должен содержать хотя бы один специальный символ",
+                            password));
         }
         return password;
     }
