@@ -78,6 +78,13 @@ class PasswordValidatorTest {
     }
 
     @Test
+    void qwertyLike() {
+        assertThatThrownBy(() -> PasswordValidator.validate("PaSSWord123%"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("не должен содержать данное слово в любом регистре");
+    }
+
+    @Test
     void qwertyLike1() {
         assertThatThrownBy(() -> PasswordValidator.validate("PASSWORD123%"))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -85,8 +92,8 @@ class PasswordValidatorTest {
     }
 
     @Test
-    void qwertyLike() {
-        assertThatThrownBy(() -> PasswordValidator.validate("PaSSWord123%"))
+    void qwertyLike2() {
+        assertThatThrownBy(() -> PasswordValidator.validate("word_12345"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("не должен содержать данное слово в любом регистре");
     }
@@ -99,8 +106,8 @@ class PasswordValidatorTest {
     }
 
     @Test
-    void qwertyLike2() {
-        assertThatThrownBy(() -> PasswordValidator.validate("word_12345"))
+    void qwertyLike4() {
+        assertThatThrownBy(() -> PasswordValidator.validate("sjf_PAroL87dj"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("не должен содержать данное слово в любом регистре");
     }

@@ -12,7 +12,7 @@ public class PasswordValidator {
                     String.format("Длина пароля: %s должна быть от 8 до 32 символов включительно",
                             password));
         }
-        String[] string = {"qwerty", "12345", "password", "admin", "user"};
+        String[] string = {"qwerty", "12345", "password", "admin", "user", "parol"};
         for (String s : string) {
             if (password.toLowerCase().contains(s.toLowerCase())
                     || password.toUpperCase().contains(s.toUpperCase())) {
