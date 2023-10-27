@@ -7,11 +7,10 @@ import java.util.Comparator;
 import static org.assertj.core.api.Assertions.assertThat;
 import static ru.job4j.queue.Position.*;
 
-
 class ScheduleTaskTest {
     @Test
     void whenTwoDirectorTaskThenReadMethodTest() {
-        Comparator<Task> comparator = new TaskByPositionAsc().thenComparing(new TaskByUrgencyDesc());
+        Comparator<Task> comparator = new TaskByPositionAsc().thenComparing(new TaskByUrgencyDes());
         ScheduleTask scheduleTask = new ScheduleTask(comparator);
         scheduleTask.addTask(new Task(DEPARTMENT_HEAD, "description_1", 10));
         scheduleTask.addTask(new Task(DIRECTOR, "description_2", 4));
@@ -23,7 +22,7 @@ class ScheduleTaskTest {
 
     @Test
     void whenTwoDepartmentHeadTaskAndEqualUrgencyThenGetMethodTest() {
-        Comparator<Task> comparator = new TaskByPositionAsc().thenComparing(new TaskByUrgencyDesc());
+        Comparator<Task> comparator = new TaskByPositionAsc().thenComparing(new TaskByUrgencyDes());
         ScheduleTask scheduleTask = new ScheduleTask(comparator);
         scheduleTask.addTask(new Task(DEPARTMENT_HEAD, "description_1", 7));
         scheduleTask.addTask(new Task(MANAGER, "description_2", 10));
