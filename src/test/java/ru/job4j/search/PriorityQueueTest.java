@@ -10,7 +10,7 @@ public class PriorityQueueTest {
 
     @Test
     public void whenHigherPriority() {
-        PriorityQueue queue = new PriorityQueue();
+        PriorityQueue<Task> queue = new PriorityQueue<Task>();
         queue.put(new Task("low", 3));
         queue.put(new Task("urgent", 5));
         queue.put(new Task("middle", 1));
@@ -20,7 +20,7 @@ public class PriorityQueueTest {
 
     @Test
     public void whenEqualPriority() {
-        PriorityQueue queue = new PriorityQueue();
+        PriorityQueue<Task> queue = new PriorityQueue<Task>();
         queue.put(new Task("low", 5));
         queue.put(new Task("urgent", 5));
         queue.put(new Task("middle", 5));
@@ -30,7 +30,7 @@ public class PriorityQueueTest {
 
     @Test
     public void whenNoElements() {
-        PriorityQueue queue = new PriorityQueue();
+        PriorityQueue<Task> queue = new PriorityQueue<Task>();
         Task result = queue.take();
         assertNull(result);
     }

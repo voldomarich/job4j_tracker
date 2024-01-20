@@ -1,11 +1,7 @@
 package ru.job4j.tracker.tracker;
 
 import org.junit.Test;
-import ru.job4j.tracker.tracker.Input;
-import ru.job4j.tracker.tracker.StubInput;
-import ru.job4j.tracker.tracker.Item;
-import ru.job4j.tracker.tracker.StartUI;
-import ru.job4j.tracker.tracker.Tracker;
+import ru.job4j.tracker.tracker.action.*;
 
 
 import java.util.List;
@@ -23,9 +19,9 @@ public class StartUITest {
                 new String[]{"0", "Item name", "1"}
         );
         Tracker tracker = new Tracker();
-        List<UserAction> actions = List.of(
-                new CreateAction(out),
-                new ExitAction(out)
+        List<User> actions = List.of(
+                new Create(out),
+                new Exit(out)
         );
         new StartUI(out).init(in, tracker, actions);
         assertThat(tracker.findAll().get(0).getName(), is("Item name"));
@@ -39,9 +35,9 @@ public class StartUITest {
         Input in = new StubInput(
                 new String[]{"0", String.valueOf(item.getId()), "1"}
         );
-        List<UserAction> actions = List.of(
-                new DeleteAction(out),
-                new ExitAction(out)
+        List<User> actions = List.of(
+                new Delete(out),
+                new Exit(out)
         );
         new StartUI(out).init(in, tracker, actions);
         assertThat(tracker.findById(item.getId()), is(nullValue()));
@@ -56,9 +52,9 @@ public class StartUITest {
         Input in = new StubInput(
                 new String[]{"0", String.valueOf(one.getId()), replaceName, "1"}
         );
-        List<UserAction> actions = List.of(
-                new EditAction(out),
-                new ExitAction(out)
+        List<User> actions = List.of(
+                new Edit(out),
+                new Exit(out)
         );
         new StartUI(out).init(in, tracker, actions);
         String ln = System.lineSeparator();
@@ -84,9 +80,9 @@ public class StartUITest {
         Input in = new StubInput(
                 new String[]{"0", "1"}
         );
-        List<UserAction> actions = List.of(
-                new FindAllAction(out),
-                new ExitAction(out)
+        List<User> actions = List.of(
+                new FindAll(out),
+                new Exit(out)
         );
         new StartUI(out).init(in, tracker, actions);
         String ln = System.lineSeparator();
@@ -111,9 +107,9 @@ public class StartUITest {
         Input in = new StubInput(
                 new String[]{"0", String.valueOf(one.getId()), "1"}
         );
-        List<UserAction> actions = List.of(
-                new FindByIdAction(out),
-                new ExitAction(out)
+        List<User> actions = List.of(
+                new FindById(out),
+                new Exit(out)
         );
         new StartUI(out).init(in, tracker, actions);
         String ln = System.lineSeparator();
@@ -138,9 +134,9 @@ public class StartUITest {
         Input in = new StubInput(
                 new String[]{"0", one.getName(), "1"}
         );
-        List<UserAction> actions = List.of(
-                new FindByNameAction(out),
-                new ExitAction(out)
+        List<User> actions = List.of(
+                new FindByName(out),
+                new Exit(out)
         );
         new StartUI(out).init(in, tracker, actions);
         String ln = System.lineSeparator();
@@ -164,8 +160,8 @@ public class StartUITest {
                 new String[] {"14", "0"}
         );
         Tracker tracker = new Tracker();
-        List<UserAction> actions = List.of(
-                new ExitAction(out)
+        List<User> actions = List.of(
+                new Exit(out)
         );
         new StartUI(out).init(in, tracker, actions);
         String ln = System.lineSeparator();

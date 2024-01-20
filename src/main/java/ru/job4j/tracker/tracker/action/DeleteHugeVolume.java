@@ -1,10 +1,14 @@
-package ru.job4j.tracker.tracker;
+package ru.job4j.tracker.tracker.action;
 
-public class DeleteHugeAction implements UserAction {
+import ru.job4j.tracker.tracker.Input;
+import ru.job4j.tracker.tracker.Output;
+import ru.job4j.tracker.tracker.Tracker;
+
+public class DeleteHugeVolume implements User {
 
     private final Output out;
 
-    public DeleteHugeAction(Output out) {
+    public DeleteHugeVolume(Output out) {
         this.out = out;
     }
 

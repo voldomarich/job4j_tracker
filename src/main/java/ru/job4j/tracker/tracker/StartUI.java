@@ -1,10 +1,12 @@
 package ru.job4j.tracker.tracker;
 
+import ru.job4j.tracker.tracker.action.*;
+
 import java.util.List;
 
 public record StartUI(Output out) {
 
-    public void init(Input input, Tracker tracker, List<UserAction> actions) {
+    public void init(Input input, Tracker tracker, List<User> actions) {
         boolean run = true;
         while (run) {
             this.showMenu(actions);
@@ -13,12 +15,12 @@ public record StartUI(Output out) {
                 out.println("Wrong input, you can select: 0 .. " + (actions.size() - 1));
                 continue;
             }
-            UserAction action = actions.get(select);
+            User action = actions.get(select);
             run = action.execute(input, tracker);
         }
     }
 
-    private void showMenu(List<UserAction> actions) {
+    private void showMenu(List<User> actions) {
         System.out.println();
         out.println("Menu:");
         for (int index = 0; index < actions.size(); index++) {
@@ -31,11 +33,11 @@ public record StartUI(Output out) {
         Output output = new ConsoleOutput();
         Input input = new ValidateInput(output, new ConsoleInput());
         Tracker tracker = new Tracker();
-        List<UserAction> actions = List.of(
-                new CreateHugeAction(output), new DeleteHugeAction(output),
-                new CreateAction(output), new FindAllAction(output), new EditAction(output),
-                new DeleteAction(output), new FindByIdAction(output),
-                new FindByNameAction(output), new ExitAction(output)
+        List<User> actions = List.of(
+                new CreateHugeVolume(output), new DeleteHugeVolume(output),
+                new Create(output), new FindAll(output), new Edit(output),
+                new Delete(output), new FindById(output),
+                new FindByName(output), new Exit(output)
         );
         new StartUI(output).init(input, tracker, actions);
     }
