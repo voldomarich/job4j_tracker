@@ -1,13 +1,10 @@
 package ru.job4j.tracker.tracker.action;
 
-import ru.job4j.tracker.tracker.Input;
-import ru.job4j.tracker.tracker.Item;
-import ru.job4j.tracker.tracker.Output;
-import ru.job4j.tracker.tracker.Tracker;
+import ru.job4j.tracker.tracker.*;
 
 import java.util.List;
 
-public class FindAll implements User {
+public class FindAll implements UserAction {
 
     private final Output out;
 

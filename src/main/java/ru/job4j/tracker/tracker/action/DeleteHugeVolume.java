@@ -3,8 +3,9 @@ package ru.job4j.tracker.tracker.action;
 import ru.job4j.tracker.tracker.Input;
 import ru.job4j.tracker.tracker.Output;
 import ru.job4j.tracker.tracker.Tracker;
+import ru.job4j.tracker.tracker.UserAction;
 
-public class DeleteHugeVolume implements User {
+public class DeleteHugeVolume implements UserAction {
 
     private final Output out;
 

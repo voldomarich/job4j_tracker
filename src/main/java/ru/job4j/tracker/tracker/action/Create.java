@@ -2,7 +2,7 @@ package ru.job4j.tracker.tracker.action;
 
 import ru.job4j.tracker.tracker.*;
 
-public class Create implements User {
+public class Create implements UserAction {
 
     private final Output out;
 
