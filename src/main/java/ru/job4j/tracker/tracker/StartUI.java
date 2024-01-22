@@ -6,7 +6,7 @@ import java.util.List;
 
 public record StartUI(Output out) {
 
-    public void init(Input input, Tracker tracker, List<User> actions) {
+    public void init(Input input, Tracker tracker, List<UserAction> actions) {
         boolean run = true;
         while (run) {
             this.showMenu(actions);
@@ -15,12 +15,12 @@ public record StartUI(Output out) {
                 out.println("Wrong input, you can select: 0 .. " + (actions.size() - 1));
                 continue;
             }
-            User action = actions.get(select);
+            UserAction action = actions.get(select);
             run = action.execute(input, tracker);
         }
     }
 
-    private void showMenu(List<User> actions) {
+    private void showMenu(List<UserAction> actions) {
         System.out.println();
         out.println("Menu:");
         for (int index = 0; index < actions.size(); index++) {
@@ -33,7 +33,7 @@ public record StartUI(Output out) {
         Output output = new ConsoleOutput();
         Input input = new ValidateInput(output, new ConsoleInput());
         Tracker tracker = new Tracker();
-        List<User> actions = List.of(
+        List<UserAction> actions = List.of(
                 new CreateHugeVolume(output), new DeleteHugeVolume(output),
                 new Create(output), new FindAll(output), new Edit(output),
                 new Delete(output), new FindById(output),
