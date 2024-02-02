@@ -2,7 +2,7 @@ package ru.job4j.tracker.tracker.action;
 
 import ru.job4j.tracker.tracker.Input;
 import ru.job4j.tracker.tracker.Output;
-import ru.job4j.tracker.tracker.Tracker;
+import ru.job4j.tracker.tracker.MemTracker;
 import ru.job4j.tracker.tracker.UserAction;
 
 public class DeleteHugeVolume implements UserAction {
@@ -19,7 +19,7 @@ public class DeleteHugeVolume implements UserAction {
     }
 
     @Override
-    public boolean execute(Input input, Tracker tracker) {
+    public boolean execute(Input input, MemTracker tracker) {
         out.println("=== Delete Items ===");
         int n = input.askInt("Enter ID1: ");
         for (int i = n; i > 0; i--) {

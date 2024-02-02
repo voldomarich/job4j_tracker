@@ -2,7 +2,8 @@ package ru.job4j.tracker.tracker;
 
 import java.util.*;
 
-public class Tracker {
+public class MemTracker {
+
     private final List<Item> items = new ArrayList<>();
     private int ids = 1;
 

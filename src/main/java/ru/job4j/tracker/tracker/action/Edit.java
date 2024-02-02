@@ -15,7 +15,7 @@ public class Edit implements UserAction {
     }
 
     @Override
-    public boolean execute(Input input, Tracker tracker) {
+    public boolean execute(Input input, MemTracker tracker) {
         out.println("=== Edit Item ===");
         int id = input.askInt("Enter ID: ");
         String name = input.askStr("Enter name: ");

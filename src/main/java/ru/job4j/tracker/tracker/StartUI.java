@@ -6,7 +6,7 @@ import java.util.List;
 
 public record StartUI(Output out) {
 
-    public void init(Input input, Tracker tracker, List<UserAction> actions) {
+    public void init(Input input, MemTracker tracker, List<UserAction> actions) {
         boolean run = true;
         while (run) {
             this.showMenu(actions);
@@ -32,7 +32,7 @@ public record StartUI(Output out) {
     public static void main(String[] args) {
         Output output = new ConsoleOutput();
         Input input = new ValidateInput(output, new ConsoleInput());
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         List<UserAction> actions = List.of(
                 new CreateHugeVolume(output), new DeleteHugeVolume(output),
                 new Create(output), new FindAll(output), new Edit(output),
