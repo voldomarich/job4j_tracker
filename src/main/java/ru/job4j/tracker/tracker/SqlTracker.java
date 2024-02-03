@@ -64,10 +64,13 @@ public class SqlTracker implements Store {
         boolean result = false;
         try (PreparedStatement statement =
             connection.prepareStatement("REPLACE items SET id = ?, name = ? WHERE id = ?")) {
-            if (id == item.getId()) {
-                statement.setString(2, item.getName());
-                statement.setInt(3, item.getId());
-                result = statement.executeUpdate() > 0;
+            for (Item i : findAll()) {
+                if (Objects.equals(id, i.getId())) {
+                    statement.setString(1, item.getName());
+                    statement.setInt(2, item.getId());
+                    statement.setTimestamp(3, Timestamp.valueOf(item.getCreated()));
+                    result = statement.executeUpdate() > 0;
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -123,7 +126,7 @@ public class SqlTracker implements Store {
 
     @Override
     public Item findById(int id) throws SQLException {
-        Item item = new Item();
+        Item item = new Item("hhh");
         try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM items")) {
             try (ResultSet resultSet = statement.executeQuery()) {
                 for (Item i : findAll()) {
