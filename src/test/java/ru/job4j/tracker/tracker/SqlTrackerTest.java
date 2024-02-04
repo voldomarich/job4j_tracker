@@ -64,6 +64,8 @@ class SqlTrackerTest {
         List<Item> list = new ArrayList<>();
         Item item = new Item("item");
         Item item1 = new Item("item1");
+        tracker.add(item);
+        tracker.add(item1);
         list.add(item);
         list.add(item1);
         assertThat(tracker.findAll()).isEqualTo(list);
@@ -76,7 +78,7 @@ class SqlTrackerTest {
         Item item1 = new Item("item1");
         tracker.add(item);
         tracker.add(item1);
-        assertThat(tracker.replace(0, item1)).isEqualTo(tracker.findAll().size() == 1);
+        assertThat(tracker.replace(item1.getId(), item1)).isEqualTo(tracker.findAll().size() == 1);
     }
 
     @Test
@@ -86,7 +88,7 @@ class SqlTrackerTest {
         Item item1 = new Item("item1");
         tracker.add(item);
         tracker.add(item1);
-        tracker.delete(0);
+        tracker.delete(item.getId());
         assertThat(tracker.findAll().get(0)).isEqualTo(item1);
     }
 
@@ -97,7 +99,7 @@ class SqlTrackerTest {
         Item item1 = new Item("item1");
         tracker.add(item);
         tracker.add(item1);
-        assertThat(tracker.findById(1)).isEqualTo(item1);
+        assertThat(tracker.findById(item1.getId())).isEqualTo(item1);
     }
 
     @Test

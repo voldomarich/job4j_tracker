@@ -42,11 +42,10 @@ public class SqlTracker implements Store {
     @Override
     public Item add(Item item) {
         try (PreparedStatement statement =
-                     connection.prepareStatement("INSERT INTO items(id, name) VALUES (?, ?)",
+                     connection.prepareStatement("INSERT INTO items(name, date) VALUES (?, ?)",
                              Statement.RETURN_GENERATED_KEYS)) {
-            statement.setInt(1, item.getId());
-            statement.setString(2, item.getName());
-            statement.setTimestamp(3, Timestamp.valueOf(item.getCreated()));
+            statement.setString(1, item.getName());
+            statement.setTimestamp(2, Timestamp.valueOf(item.getCreated()));
             statement.execute();
             try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
@@ -62,15 +61,20 @@ public class SqlTracker implements Store {
     @Override
     public boolean replace(int id, Item item) {
         boolean result = false;
+        List<Item> items = new ArrayList<>();
         try (PreparedStatement statement =
-            connection.prepareStatement("REPLACE items SET id = ?, name = ? WHERE id = ?")) {
-            for (Item i : findAll()) {
+            connection.prepareStatement("UPDATE items SET name = ? WHERE id = ?")) {
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                items.add(item);
+            }
+            for (Item i : items)   {
                 if (Objects.equals(id, i.getId())) {
                     statement.setString(1, item.getName());
-                    statement.setInt(2, item.getId());
-                    statement.setTimestamp(3, Timestamp.valueOf(item.getCreated()));
+                    statement.setInt(2, id);
                     result = statement.executeUpdate() > 0;
                 }
+            }
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -110,34 +114,50 @@ public class SqlTracker implements Store {
     @Override
     public List<Item> findByName(String key) {
         List<Item> items = new ArrayList<>();
-        try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM items")) {
+        List<Item> result = new ArrayList<>();
+        try (PreparedStatement statement =
+                     connection.prepareStatement("UPDATE items SET name = ? WHERE id = ?")) {
             try (ResultSet resultSet = statement.executeQuery()) {
-                for (Item i : findAll()) {
+                while (resultSet.next()) {
+                    items.add(new Item(
+                            resultSet.getInt("id"),
+                            resultSet.getString("name")
+                    ));
+                }
+                for (Item i : items) {
                     if (Objects.equals(key, i.getName())) {
-                        items.add(i);
+                        result.add(i);
                     }
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return items;
+        return result;
     }
 
     @Override
-    public Item findById(int id) throws SQLException {
-        Item item = new Item("hhh");
-        try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM items")) {
+    public Item findById(int id) {
+        List<Item> items = new ArrayList<>();
+        Item item = new Item("");
+        try (PreparedStatement statement =
+                     connection.prepareStatement("SELECT * BY ID FROM items")) {
             try (ResultSet resultSet = statement.executeQuery()) {
-                for (Item i : findAll()) {
+                while (resultSet.next()) {
+                    items.add(new Item(
+                            resultSet.getInt("id"),
+                            resultSet.getString("name")
+                    ));
+                }
+                for (Item i : items) {
                     if (Objects.equals(id, i.getId())) {
                         item = i;
                     }
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
             }
-            return item;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        return item;
     }
 }
