@@ -19,11 +19,11 @@ public class DeleteHugeVolume implements UserAction {
     }
 
     @Override
-    public boolean execute(Input input, MemTracker tracker) {
+    public boolean execute(Input input, MemTracker memTracker) {
         out.println("=== Delete Items ===");
         int n = input.askInt("Enter ID1: ");
         for (int i = n; i > 0; i--) {
-            tracker.delete(i);
+            memTracker.delete(i);
             out.println("Заявки удалены успешно. ");
         }
         return true;

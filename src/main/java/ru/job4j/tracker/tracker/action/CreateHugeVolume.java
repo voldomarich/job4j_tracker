@@ -16,13 +16,13 @@ public class CreateHugeVolume implements UserAction {
     }
 
     @Override
-    public boolean execute(Input input, MemTracker tracker) {
+    public boolean execute(Input input, MemTracker memTracker) {
         out.println("=== Create new Items ====");
         String name = input.askStr("Enter name: ");
         int n = 500_000;
         for (int i = 1; i < n + 1; i++) {
             Item item = new Item(name + i);
-            tracker.add(item);
+            memTracker.add(item);
             out.println("Добавленная заявка: " + name + i);
         }
         return true;

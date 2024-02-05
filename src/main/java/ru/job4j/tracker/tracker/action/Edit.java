@@ -15,14 +15,14 @@ public class Edit implements UserAction {
     }
 
     @Override
-    public boolean execute(Input input, MemTracker tracker) {
+    public boolean execute(Input input, MemTracker memTracker) {
         out.println("=== Edit Item ===");
         int id = input.askInt("Enter ID: ");
         String name = input.askStr("Enter name: ");
-        out.println("Заявка до редактирования: " + tracker.findById(id));
+        out.println("Заявка до редактирования: " + memTracker.findById(id));
         Item item = new Item(name);
-        if (tracker.replace(id, item)) {
-            out.println("Заявка изменена успешно: " + tracker.findById(id));
+        if (memTracker.replace(id, item)) {
+            out.println("Заявка изменена успешно: " + memTracker.findById(id));
         } else {
             out.println("Ошибка замены заявки.");
         }
