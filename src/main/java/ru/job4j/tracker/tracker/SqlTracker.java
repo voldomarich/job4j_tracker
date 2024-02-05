@@ -116,7 +116,7 @@ public class SqlTracker implements Store {
         List<Item> items = new ArrayList<>();
         List<Item> result = new ArrayList<>();
         try (PreparedStatement statement =
-                     connection.prepareStatement("UPDATE items SET name = ? WHERE id = ?")) {
+                     connection.prepareStatement("SELECT * FROM items WHERE key = ?")) {
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
                     items.add(new Item(
@@ -141,7 +141,7 @@ public class SqlTracker implements Store {
         List<Item> items = new ArrayList<>();
         Item item = new Item("");
         try (PreparedStatement statement =
-                     connection.prepareStatement("SELECT * BY ID FROM items")) {
+                     connection.prepareStatement("SELECT * FROM items WHERE id = ?")) {
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
                     items.add(new Item(
