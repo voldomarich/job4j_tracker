@@ -77,8 +77,7 @@ class SqlTrackerTest {
         Item item = new Item("item");
         Item item1 = new Item("item1");
         tracker.add(item);
-        tracker.add(item1);
-        assertThat(tracker.replace(item1.getId(), item1)).isEqualTo(tracker.findAll().size() == 1);
+        assertThat(tracker.replace(item.getId(), item1)).isEqualTo(true);
     }
 
     @Test
@@ -106,9 +105,11 @@ class SqlTrackerTest {
     public void whenSaveItemAndFindByNameThen() throws SQLException {
         SqlTracker tracker = new SqlTracker(connection);
         Item item = new Item("item");
-        Item item1 = new Item("item1");
+        Item item1 = new Item("item11");
+        Item item2 = new Item("item11");
         tracker.add(item);
         tracker.add(item1);
-        assertThat(tracker.findByName("item1").get(0)).isEqualTo(item1);
+        tracker.add(item2);
+        assertThat(tracker.findByName("item11").get(1)).isEqualTo(item2);
     }
 }

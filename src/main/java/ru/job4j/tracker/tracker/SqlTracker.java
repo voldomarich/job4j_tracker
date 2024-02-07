@@ -6,6 +6,7 @@ import java.sql.*;
 import java.util.*;
 
 public class SqlTracker implements Store {
+
     private Connection connection;
 
     public SqlTracker() {
@@ -42,10 +43,10 @@ public class SqlTracker implements Store {
     @Override
     public Item add(Item item) {
         try (PreparedStatement statement =
-                connection.prepareStatement("INSERT INTO items(id, name, date) VALUES (?, ?, ?)",
+                connection.prepareStatement("INSERT INTO items(name, created) VALUES (?, ?)",
                 Statement.RETURN_GENERATED_KEYS)) {
-            statement.setString(2, item.getName());
-            statement.setTimestamp(3, Timestamp.valueOf(item.getCreated()));
+            statement.setString(1, item.getName());
+            statement.setTimestamp(2, Timestamp.valueOf(item.getCreated()));
             statement.execute();
             try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
@@ -130,11 +131,13 @@ public class SqlTracker implements Store {
                      connection.prepareStatement("SELECT * FROM items WHERE id = ?")) {
             statement.setInt(1, id);
             try (ResultSet resultSet = statement.executeQuery()) {
-                item = new Item(
-                        resultSet.getInt("id"),
-                        resultSet.getString("name"),
-                        resultSet.getTimestamp("created").toLocalDateTime()
-                );
+                while (resultSet.next()) {
+                    item = new Item(
+                            resultSet.getInt("id"),
+                            resultSet.getString("name"),
+                            resultSet.getTimestamp("created").toLocalDateTime()
+                    );
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
