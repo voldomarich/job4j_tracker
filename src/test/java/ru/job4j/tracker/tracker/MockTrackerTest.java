@@ -29,8 +29,6 @@ public class MockTrackerTest {
         when(input.askStr(any(String.class))).thenReturn(replacedName);
 
         replaceAction.execute(input, tracker);
-
-        String ln = System.lineSeparator();
         assertThat(output.toString()).isEqualTo(
                 "=== Edit Item ===" + ln
                         + "Заявка до редактирования: " + item + ln
@@ -44,7 +42,6 @@ public class MockTrackerTest {
         Input input = mock(Input.class);
         replaceAction.execute(input, tracker);
 
-        String ln = System.lineSeparator();
         assertThat(output.toString()).isEqualTo(
                 "=== Edit Item ===" + ln
                         + "Заявка до редактирования: " + tracker.findById(1) + ln
@@ -67,10 +64,21 @@ public class MockTrackerTest {
     }
 
     @Test
+    public void whenItemWasDeletedSuccesslessly() {
+        Delete deleteAction = new Delete(output);
+        Input input = mock(Input.class);
+        deleteAction.execute(input, tracker);
+
+        assertThat(output.toString()).isEqualTo(
+                "=== Delete Item ===" + ln
+                        + "Что-то пошло не так, и заявка не удалилась."
+                        + ln);
+    }
+
+    @Test
     public void  whenItemWasFoundById() {
-        Output output = new StubOutput();
-        MemTracker tracker = new MemTracker();
-        Item item = tracker.add(new Item("ToBeFoundById item"));
+        Item item = new Item("ToBeFoundById item");
+        tracker.add(item);
         tracker.add(item);
         FindById findByIdAction = new FindById(output);
         Input input = mock(Input.class);
@@ -78,20 +86,43 @@ public class MockTrackerTest {
         when(input.askInt(any(String.class))).thenReturn(2);
         findByIdAction.execute(input, tracker);
         String string = item.toString();
+
         assertThat(output.toString()).isEqualTo("=== Find Item By ID ===" + ln + string + ln);
     }
 
     @Test
+    public void  whenItemWasNotFoundById() {
+        FindById findByIdAction = new FindById(output);
+        Input input = mock(Input.class);
+        when(input.askInt(any(String.class))).thenReturn(4);
+        findByIdAction.execute(input, tracker);
+
+        assertThat(output.toString()).isEqualTo("=== Find Item By ID ===" + ln
+                + "Заявка с введенным id: " + 4 + " не найдена." + ln);
+    }
+
+    @Test
     public void  whenItemWasFoundByName() {
-        Item item = tracker.add(new Item("ToBeFoundByName item"));
-        tracker.add(item);
+        tracker.add(new Item("ToBeFoundByName item"));
+        tracker.add(new Item("ToBeFoundByName item2"));
         FindByName findByNameAction = new FindByName(output);
         Input input = mock(Input.class);
-        when(input.askInt(any(String.class))).thenReturn(5);
-        when(input.askStr(any(String.class))).thenReturn("ToBeFoundByName item");
+        when(input.askInt(any(String.class))).thenReturn(3);
+        when(input.askStr(any(String.class))).thenReturn("ToBeFoundByName item2");
         findByNameAction.execute(input, tracker);
-        String string = item.toString();
-        assertThat(output.toString()).isEqualTo("=== Find Item By Name ===" + ln + string
-                + ln + string + ln);
+        String string = tracker.findById(2).toString();
+
+        assertThat(output.toString()).isEqualTo("=== Find Item By Name ===" + ln
+                + string + ln);
+    }
+
+    @Test
+    public void  whenItemWasNotFoundByName() {
+        FindByName findByNameAction = new FindByName(output);
+        Input input = mock(Input.class);
+        findByNameAction.execute(input, tracker);
+
+        assertThat(output.toString()).isEqualTo("=== Find Item By Name ===" + ln
+        + "Заявок с введенным именем: " + tracker.findById(1) + " не найдено." + ln);
     }
 }

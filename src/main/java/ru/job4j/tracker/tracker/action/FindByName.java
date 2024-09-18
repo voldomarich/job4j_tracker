@@ -27,7 +27,7 @@ public class FindByName implements UserAction {
                 out.println(item);
             }
         } else {
-            out.println("Заявок с введенным именем: " + name + " не найдена.");
+            out.println("Заявок с введенным именем: " + name + " не найдено.");
         }
         return true;
     }
