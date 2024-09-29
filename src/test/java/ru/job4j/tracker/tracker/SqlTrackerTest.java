@@ -23,7 +23,7 @@ class SqlTrackerTest {
     @BeforeAll
     public static void initConnection() {
         try (InputStream in = SqlTracker.class.getClassLoader()
-                .getResourceAsStream("db/liquibase_test.properties")) {
+                .getResourceAsStream("liquibase_test.properties")) {
             Properties config = new Properties();
             config.load(in);
             Class.forName(config.getProperty("driver-class-name"));
