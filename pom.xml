@@ -18,7 +18,7 @@
         <profile>
             <id>test</id>
             <properties>
-                <liquibase.config>src/main/resources/db/liquibase_test.properties</liquibase.config>
+                <liquibase.config>db/liquibase_test.properties</liquibase.config>
             </properties>
             <activation>
                 <activeByDefault>true</activeByDefault>
@@ -27,7 +27,7 @@
         <profile>
             <id>production</id>
             <properties>
-                <liquibase.config>src/main/resources/db/liquibase.properties</liquibase.config>
+                <liquibase.config>db/liquibase.properties</liquibase.config>
             </properties>
         </profile>
     </profiles>
@@ -38,6 +38,21 @@
             <artifactId>lombok</artifactId>
             <version>1.18.30</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.puppycrawl.tools</groupId>
+            <artifactId>checkstyle</artifactId>
+            <version>10.18.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.6.11.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>1.5.5.Final</version>
         </dependency>
         <dependency>
             <groupId>org.postgresql</groupId>
@@ -73,11 +88,6 @@
             <artifactId>assertj-core</artifactId>
             <version>3.26.3</version>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.puppycrawl.tools</groupId>
-            <artifactId>checkstyle</artifactId>
-            <version>10.18.1</version>
         </dependency>
         <dependency>
             <groupId>org.liquibase</groupId>
