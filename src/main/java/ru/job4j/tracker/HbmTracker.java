@@ -3,7 +3,6 @@ package ru.job4j.tracker;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.query.Query;
@@ -16,8 +15,11 @@ public class HbmTracker implements Store, AutoCloseable {
 
     private final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
             .configure().build();
-    private final SessionFactory sessionFactory = new MetadataSources(registry)
-            .buildMetadata().buildSessionFactory();
+    private final SessionFactory sessionFactory;
+
+    public HbmTracker(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
     @Override
     public Item add(Item item) {
@@ -43,9 +45,9 @@ public class HbmTracker implements Store, AutoCloseable {
             Transaction transaction = session.beginTransaction();
             try {
                 int updatedRows = session.createQuery(
-                                "UPDATE Item i SET i.name = :fName WHERE u.id = :fId")
+                                "UPDATE Item i SET i.name = :fName WHERE i.id = :fId")
                         .setParameter("fName", item.getName())
-                        .setParameter("fId", item.getId())
+                        .setParameter("fId", id)
                         .executeUpdate();
                 transaction.commit();
                 isUpdated = updatedRows > 0;
@@ -68,6 +70,22 @@ public class HbmTracker implements Store, AutoCloseable {
                                 "DELETE Item i WHERE i.id = :fId")
                         .setParameter("fId", id)
                         .executeUpdate();
+                transaction.commit();
+            } catch (Exception e) {
+                if (transaction != null && transaction.getStatus().canRollback()) {
+                    transaction.rollback();
+                }
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Override
+    public void deleteAll() {
+        try (Session session = sessionFactory.openSession()) {
+            Transaction transaction = session.beginTransaction();
+            try {
+                session.createQuery("DELETE FROM Item").executeUpdate();
                 transaction.commit();
             } catch (Exception e) {
                 if (transaction != null && transaction.getStatus().canRollback()) {

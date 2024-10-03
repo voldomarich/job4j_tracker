@@ -1,5 +1,8 @@
 package ru.job4j.tracker.tracker;
 
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
 import java.io.InputStream;
 
 import java.sql.*;
@@ -78,6 +81,16 @@ public class SqlTracker implements Store {
         try (PreparedStatement statement =
                      connection.prepareStatement("DELETE FROM items WHERE id = ?")) {
             statement.setInt(1, id);
+            statement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void deleteAll() {
+        try (PreparedStatement statement =
+                     connection.prepareStatement("DELETE FROM items")) {
             statement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
