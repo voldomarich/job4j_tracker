@@ -84,8 +84,6 @@ public class HbmTracker implements Store, AutoCloseable {
             Transaction transaction = session.beginTransaction();
             try {
                 session.createQuery("DELETE Item").executeUpdate();
-                session.flush();
-                session.clear();
                 transaction.commit();
             } catch (Exception e) {
                 if (transaction != null && transaction.getStatus().canRollback()) {

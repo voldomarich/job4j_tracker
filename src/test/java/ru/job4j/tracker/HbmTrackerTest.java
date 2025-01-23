@@ -16,7 +16,6 @@ class TrackerHbmTest {
     @BeforeEach
     public void setUp() {
         tracker = new HbmTracker();
-        tracker.deleteAll();
     }
 
     @AfterEach
